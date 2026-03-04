@@ -1,0 +1,494 @@
+/* ============== Header css =================== */
+/* Mobile menu open state */
+.mobile-menu-open {
+    transition: all 0.3s ease-in-out;
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Mobile links */
+.mobile-link {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1f2937;
+  transition: all 0.3s ease-in-out;
+}
+
+.mobile-link:hover {
+    scale: 1.2;
+    color: #212221;
+   
+}
+
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: #176803;
+    transition: all 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
+/* Reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hoverEffect{
+    transition: all 0.3s ease-in-out;
+}
+/* ======== hero banner css ========== */
+#heroSlider div{
+  height: auto;
+  object-fit: cover;
+
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-dot.active {
+  background: #fff;
+  width: 24px;
+}
+/* ====================== ingredients section =============== */
+
+#ingredientTrack{
+  overflow-x: auto;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ingredient-slide-card {
+  min-width: 280px;
+  max-width: 300px;
+  border: 1px solid #176803;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: #ffffff;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform: scale(0.95);
+}
+
+.ingredient-slide-card:hover {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 10px 7px 5px #a5a4a4;
+
+}
+
+.ingredient-slide-card img {
+  width: 250px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0 0 100% 100%;
+  margin-bottom: 1.2rem;
+}
+
+.ingredient-slide-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #139141;
+}
+
+.ingredient-slide-card p {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #726e6e;
+  line-height: 1.5;
+}
+
+/* ============== Benefits Section ============ */
+
+.benefit-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Layout positioning */
+.benefit-card-1 {
+    grid-row: span 2 / span 2;
+}
+
+.benefit-card-3 {
+    grid-column-start: 2;
+    grid-row-start: 2;
+}
+
+.benefit-card-4 {
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.benefit-card-5 {
+    grid-column-start: 3;
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .benefit-box {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .benefit-card-1,
+    .benefit-card-3,
+    .benefit-card-4,
+    .benefit-card-5 {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+/* ================= PRODUCT UI ================= */
+/* LEFT */
+
+.main-image-wrapper {
+  overflow: hidden;
+  position: relative;
+  cursor: zoom-in;
+  border-radius: 16px;
+}
+
+.image-slider {
+  display: flex;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+}
+
+.slide {
+  flex: 0 0 100%;  /* VERY IMPORTANT */
+  min-width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+}
+
+.thumb-row {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 2px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s;
+  opacity: 0.5;
+}
+
+.thumb.active {
+   transform: translateY(-5px);
+  box-shadow: 0px 7px 7px #a8a7a7;
+  opacity: 1;
+}
+
+.thumb:hover {
+  transform: scale(1.05);
+}
+
+.feature{
+  background:#e6f4ea;
+  padding:12px;
+  border-radius:12px;
+  font-weight:500;
+}
+
+.pack-btn{
+  padding:12px 24px;
+  border-radius:12px;
+  font-weight:600;
+}
+
+
+/* =========================== How to use Section ==================== */
+/* Card Container */
+.use-card {
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s ease;
+}
+
+/* Image */
+.card-image img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.6s ease;
+}
+
+/* Floating Content Card */
+.card-content {
+  position: relative;
+  background: #ffffff;
+  margin: -80px 20px 0 20px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  transition: all 0.4s ease;
+}
+
+/* Title */
+.card-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #14532d;
+}
+
+/* Text */
+.card-text {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Footer */
+.card-footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  color: #14532d;
+  transition: 0.3s ease;
+}
+
+.card-footer .arrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effects */
+.use-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.use-card:hover .card-content {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+}
+
+.use-card:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-image img {
+    height: 220px;
+  }
+
+  .card-content {
+    margin: -60px 10px 0 10px;
+  }
+}
+/* ============================= FAQ section ======================== */
+
+/* Question tabs */
+.faq-tab {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border-radius: 1.25rem;
+  background: white;
+  border: 1px solid #14532d4b;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #14532d;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.faq-tab:hover {
+  scale: 1.02;
+  border: 1px solid #14532de1;
+}
+
+.faq-tab.active {
+  background: linear-gradient(135deg, #176803d8, #176803c5);
+  color: white;
+  transform: translateX(10px);
+}
+
+/* Answer panel */
+.faq-panel {
+  background: white;
+  min-height: 260px;
+  border-radius: 2rem;
+  box-shadow: 0 10px 20px #17680363;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-answer {
+  width: 100%;
+  height: 100%;
+  padding:10px 50px;
+  position: absolute;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.45s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.faq-answer.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.faq-answer h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #14532d;
+}
+
+.faq-answer p {
+  color: #4b5563;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+
+/* ===================== testimonial section ================ */
+
+/* Stack wrapper */
+.testimonial-stack {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 320px;
+}
+
+/* Card */
+.stack-card {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, #176803ce, #176803b9);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  color: white;
+  opacity: 0;
+  transform: scale(0.85) translateY(40px);
+  filter: blur(6px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Active card */
+.stack-card.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+  z-index: 10;
+}
+
+/* Text */
+.stack-card p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  color: #dcfce7;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile .image {
+  width: 50px;
+  height: 50px;
+  border-radius: 999px;
+  border: 2px solid #14532d;
+}
+
+.profile h4 {
+  font-weight: 600;
+}
+
+.profile span {
+  font-size: 0.8rem;
+  color: #86efac;
+}
+
+/* Nav buttons */
+.nav-btn {
+  text-align: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: #1768037e;
+  color: white;
+  font-weight: bolder;
+  font-size: 28px;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #176803;
+  color: #ffffff;
+  scale: 1.1;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .testimonial-stack {
+    height: 360px;
+  }
+}
+
+/* ============== Footer ============ */
+.footer-link {
+    color: #ffffffe8;
+    position: relative;
+}
+.footer-link::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: #ffffffe8;
+    transition: all 0.3s ease;
+}
+.footer-link:hover::after {
+    width: 100%;
+}

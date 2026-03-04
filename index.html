@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Psoriatic Combo</title>
+  <link rel="shortcut icon" href="./assets/Almaa Herbal Logo_Without TM.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            greentext: "#176803",
+            primary: "#22c55e",
+            soft: "#f0fdf4",
+            button:"#176803",
+            textprimary: "#1f2937",
+            bgone: "#f5f5f5",
+            bgtwo: "#ffffff"
+          }
+        }
+      }
+    }
+  </script>
+
+</head>
+
+<body class=" overflow-x-hidden ">
+
+  <!-- ================= HEADER ================= -->
+  <header id="navbar" class="sticky top-0 inset-x-0 z-40 transition-all duration-300 bg-bgone  shadow-2xl">
+      <nav id="navInner" class=" max-w-7xl mx-auto px-2 py-3 flex items-center justify-between  relative transition-all duration-300">
+        <!-- Logo -->
+        <a href="#home" class="text-2xl font-semibold text-green-800">
+         <img class="w-[80px] lg:w-[100px]" src="./assets/Almaa Herbal Logo_Without TM.png" alt="" srcset="">
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex items-center md:gap-4 lg:gap-10  font-medium text-green-900">
+          <li><a href="#product" class=" lg:text-base nav-link  hoverEffect">Product</a></li>
+          <li><a href="#about" class=" lg:text-base nav-link  hoverEffect">About</a></li>
+          <li><a href="#ingredients" class=" lg:text-base nav-link  hoverEffect">Ingredients</a></li>
+          <li><a href="#benefits" class="lg:text-base nav-link  hoverEffect">Benefits</a></li>
+          <li><a href="#how-to-use" class="lg:text-base nav-link  hoverEffect">How To Use</a></li>
+          <li><a href="#faq" class=" lg:text-base nav-link  hoverEffect">FAQ</a></li>
+          <li><a href="#testimonial" class="lg:text-base nav-link  hoverEffect">Testimonials</a></li>
+          <li>
+            <a href="https://api.whatsapp.com/send/?phone=%2B917401403037&text&type=phone_number&app_absent=0" target="_blank" 
+              class="border md:text-sm lg:text-base rounded-full border-greentext
+               py-2 px-4 flex gap-1 items-center bg-greentext text-white  hover:bg-transparent hover:text-greentext hover:scale-105 hoverEffect ">Chat with Us 
+              <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"  width="20"  height="20"  fill="currentColor" >
+                <path d="M16 2.933A13.067 13.067 0 0 0 4.133 21.6L2 30l8.533-2.067A13.067 13.067 0 1 0 16 2.933zm0 23.867a10.74 10.74 0 0 1-5.467-1.5l-.4-.233-5.067 1.233 1.333-4.933-.267-.433A10.733 10.733 0 1 1 16 26.8zm5.867-8.033c-.333-.167-1.967-.967-2.267-1.067-.3-.1-.533-.167-.767.167-.233.333-.9 1.067-1.1 1.3-.2.233-.4.267-.733.1-.333-.167-1.4-.517-2.667-1.65-.983-.867-1.65-1.933-1.833-2.267-.183-.333-.017-.517.15-.683.15-.15.333-.4.5-.6.167-.2.233-.333.35-.567.117-.233.058-.433-.029-.6-.087-.167-.767-1.85-1.05-2.533-.275-.667-.55-.583-.767-.6-.2-.017-.433-.017-.667-.017s-.6.083-.917.433c-.317.35-1.2 1.167-1.2 2.85s1.233 3.3 1.4 3.533c.167.233 2.417 3.683 5.85 5.167.817.35 1.45.567 1.95.733.817.267 1.567.233 2.15.142.658-.1 1.967-.8 2.25-1.567.283-.767.283-1.425.2-1.567-.083-.142-.3-.233-.633-.4z"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Mobile Menu Button -->
+        <button id="menuBtn" class="md:hidden text-black">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden overflow-hidden max-h-0 opacity-0 scale-95 transition-all duration-500 bg-white px-6  shadow-lg">
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#home">Home</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#home">Product</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#about">About</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#ingredients">Ingredients</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#benefits">Benefits</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#how-to-use">How To Use</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#faq">FAQ</a>
+          <a class="hoverEffect block py-2 text-center mobile-link rounded" href="#testimonial">Testimonials</a>
+          <a href="https://wa.me/919999999999" target="_blank" class="rounded-full font-medium border md:text-sm lg:text-base rounded-[2px] border-greentext   
+               py-2 px-2 flex gap-1 items-center justify-center bg-greentext text-white  hover:bg-transparent hover:text-greentext hover:scale-105 hoverEffect mb-2">Chat with Us 
+              <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"  width="20"  height="20"  fill="currentColor" >
+                <path d="M16 2.933A13.067 13.067 0 0 0 4.133 21.6L2 30l8.533-2.067A13.067 13.067 0 1 0 16 2.933zm0 23.867a10.74 10.74 0 0 1-5.467-1.5l-.4-.233-5.067 1.233 1.333-4.933-.267-.433A10.733 10.733 0 1 1 16 26.8zm5.867-8.033c-.333-.167-1.967-.967-2.267-1.067-.3-.1-.533-.167-.767.167-.233.333-.9 1.067-1.1 1.3-.2.233-.4.267-.733.1-.333-.167-1.4-.517-2.667-1.65-.983-.867-1.65-1.933-1.833-2.267-.183-.333-.017-.517.15-.683.15-.15.333-.4.5-.6.167-.2.233-.333.35-.567.117-.233.058-.433-.029-.6-.087-.167-.767-1.85-1.05-2.533-.275-.667-.55-.583-.767-.6-.2-.017-.433-.017-.667-.017s-.6.083-.917.433c-.317.35-1.2 1.167-1.2 2.85s1.233 3.3 1.4 3.533c.167.233 2.417 3.683 5.85 5.167.817.35 1.45.567 1.95.733.817.267 1.567.233 2.15.142.658-.1 1.967-.8 2.25-1.567.283-.767.283-1.425.2-1.567-.083-.142-.3-.233-.633-.4z"/>
+              </svg>
+            </a>
+        </div>
+  </header>
+<main class="">
+  <!-- ================= HERO ================= -->
+   <!-- HERO SLIDER -->
+  <section id="home" class="  h-[80vh] relative overflow-hidden ">
+      <!-- SLIDES -->
+      <div id="heroSlider" class="flex h-full transition-transform duration-700 ease-in-out ">
+        <!-- SLIDE 1 -->
+        <div class="min-w-full  bg-[url('./assets/banner-image/calm-the-itch-image.jpg')] bg-cover  ">   
+        </div>
+        <!-- SLIDE 2 -->
+        <div class="min-w-full   bg-[url('./assets/banner-image/calm-the-itch-image-2.jpg')] bg-cover  "> 
+        </div>
+        <!-- SLIDE 3 -->
+        <div class="min-w-full  bg-[url('./assets/banner-image/calm-the-itch-image-3.jpg')] bg-cover ">
+        </div>
+      </div>
+      <!-- DOTS -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+        <span class="hero-dot active"></span>
+        <span class="hero-dot"></span>
+        <span class="hero-dot"></span>
+      </div>
+  </section>
+  <!-- ================= PRODUCT SECTION  ================= -->
+  <section id="product" class="product-section  py-20">
+      <div class="product-container max-w-7xl mx-auto px-6">
+
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 md:p-5">
+          <!-- LEFT SIDE -->
+          <div class="product-left md:p-5">
+            <div class="main-image-wrapper ">
+              <div class="image-slider " id="sliderTrack">
+                <img src="./assets/Product-image/Arthritis Care Combo 01.webp" class="slide rouned-2xl">
+                <img src="./assets/Product-image/Diabetes Care Combo 01 .webp" class="slide rouned-2xl">
+                <img src="./assets/Product-image/Piles Care Combo 01.webp" class="slide rouned-2xl">
+              </div>
+            </div>
+            <!-- Thumbnails -->
+            <div class="thumb-row">
+              <img src="./assets/Product-image/Arthritis Care Combo 01.webp" class="thumb active" data-index="0">
+              <img src="./assets/Product-image/Diabetes Care Combo 01 .webp" class="thumb" data-index="1">
+              <img src="./assets/Product-image/Piles Care Combo 01.webp" class="thumb" data-index="2">
+            </div>
+          </div>
+          
+          <!-- RIGHT DETAILS -->
+          <div class="space-y-5 md:p-5  rounded-3xl ">
+              <!-- Title -->
+              <div>
+                <h1 class="text-2xl md:text-4xl font-bold text-gray-800">
+                 ALMAA's PSORIATIC COMBO
+                </h1>
+                <!-- Rating -->
+                <div class="flex items-center gap-3 mt-3">
+                  <div class="flex text-yellow-400 text-sm md:text-lg">
+                    ★ ★ ★ ★ ★
+                  </div>
+                  <p class="text-gray-600 text-sm">4.8 (131 Reviews)</p>
+                  <span class="bg-green-100 text-greentext text-xs font-semibold px-3 py-1 rounded-full">
+                    SAVE 26%
+                  </span>
+                </div>
+
+                <p class="text-gray-600 mt-2  ">
+                  This combo is designed to clear the Psoriatic skin condition through
+                  both internal and external approaches.
+                </p>
+              </div>
+
+              <!-- Features -->
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="text-sm ">✔ Reduce scaling of skin</div>
+                <div class="text-sm">✔ Internal detoxification</div>
+                <div class="text-sm">✔ Faster healing</div>
+                <div class="text-sm">✔ Skin regeneration</div>
+              </div>
+
+              <!-- Price -->
+                <div class="flex items-center gap-4">
+                  <p class="text-4xl font-bold text-greentext" id="mainPrice">₹2884</p>
+                  <p class="text-gray-400 line-through text-lg" id="oldPrice">₹3845</p>
+                  <span class="bg-yellow-400 text-black text-sm font-semibold px-3 py-1 rounded-full">
+                    26% OFF
+                  </span>
+                </div>
+
+              <!-- Select Pack -->
+              <div class="w-[70%]">
+                <p class="font-semibold mb-4 text-lg">Select Pack</p>
+                <div class="grid grid-cols-2  gap-2">
+
+                  <!-- Pack 1 -->
+                  <button 
+                    class="pack-btn border border-greentext text-white bg-greentext hover:scale-105 text-center transition"
+                    data-pack="1"
+                    data-price="2884"
+                    data-old="3845">
+
+                    <p class="font-semibold text-lg">Pack of 1</p>
+                    <p class="font-bold text-xl">₹2884</p>
+                    <p class="text-gray-400 line-through text-sm">₹3845</p>
+                  </button>
+
+                  <!-- Pack 2 -->
+                  <button 
+                    class="pack-btn border border-greentext hover:scale-105 rounded-2xl text-center transition"
+                    data-pack="2"
+                    data-price="2884"
+                    data-old="7690">
+
+                    <p class="font-semibold text-lg">Pack of 2</p>
+                    <p class="font-bold text-xl">₹5768</p>
+                    <p class="text-gray-300 line-through text-sm">₹7690</p>
+                  </button>
+
+                </div>
+              </div>
+
+              <!-- Buy Now -->
+              <button id="buyNowBtn"
+                class="w-full  border border-greentext bg-greentext text-white py-4 rounded-2xl text-lg font-semibold hover:bg-transparent hover:text-greentext hover:scale-105 transition shadow-lg">
+                Buy Now
+              </button>
+
+              <!-- Free Delivery Marquee -->
+              <marquee class="text-greentext p-3 rounded-xl font-medium">
+                🚚 Free Delivery on All Prepaid Orders
+              </marquee>
+
+              <!-- Doctor Note -->
+              <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-xl">
+                <p class="text-sm text-gray-700">
+                  ⚠️ Note: Please consult a qualified siddha doctor before using any supplements.
+                  Free consultation: <span class="font-semibold">9363406276</span>
+                </p>
+              </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+      
+  </section>
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class=" py-28">
+    <!-- Heading -->
+      <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+        <h2 class="text-3xl md:text-5xl font-bold  mb-24 head-prime text-center ">
+          About <span class="text-greentext">Psoriatic Care Combo</span>
+        </h2>
+      </div>
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <!-- IMAGE -->
+          <div class="reveal flex justify-center">
+            <img src="./assets/product_lifestyle-removebg-preview.png"
+              alt="Psoriatic Care Combo"
+              class="rounded-2xl shadow-xl w-full max-w-md 
+                    hover:scale-105 transition duration-500 ease-in-out"/>
+          </div>
+
+          <!-- CONTENT -->
+          <div class="space-y-8 reveal">
+            
+            <!-- Heading -->
+            <div>
+              
+
+              <p class="text-gray-600 leading-relaxed mb-4">
+                This carefully formulated combo is designed to support the management 
+                of psoriatic skin conditions through both internal cleansing and 
+                external soothing care. It works to balance underlying body imbalances 
+                while calming inflamed and irritated skin.
+              </p>
+
+              <p class="text-gray-500 leading-relaxed">
+                The combination helps reduce scaling, itching, and dryness while 
+                promoting natural skin repair. It also supports digestion and immune 
+                function, which are closely linked to chronic skin concerns.
+              </p>
+            </div>
+
+            <!-- Benefits Cards -->
+            <div class="grid sm:grid-cols-2 gap-6">
+              
+              <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-lg font-semibold text-green-700 mb-2">
+                  Internal + External Care
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Combines herbal powders and therapeutic oils for complete skin support.
+                </p>
+              </div>
+
+              <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                <h3 class="text-lg font-semibold text-green-700 mb-2">
+                  Supports Skin Repair
+                </h3>
+                <p class="text-sm text-gray-600">
+                  Helps soothe irritation, reduce scaling, and improve skin texture.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Quantity Section -->
+            <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+              <h4 class="font-semibold text-gray-800 mb-3 text-lg">
+                Package Includes:
+              </h4>
+              <ul class="space-y-2 text-gray-600 text-sm">
+                <li>• Sivanar Vembu Chooranam &#8208 100g / 200g</li>
+                <li>• Sivanar Vembu Kuzhi Thailam &#8208 50ml</li>
+                <li>• Psora 111 Oil &#8208 200ml</li>
+                <li>• Thiripala Chooranam &#8208 100g</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+  </section>
+  <!-- ================= INGREDIENTS ================= -->
+  <section id="ingredients" class="relative overflow-hidden   py-28 ">
+      
+      <div class="max-w-7xl mx-auto px-6 text-center mb-20 space-y-5">
+          <!-- Heading -->
+      <h2 class="text-3xl md:text-5xl font-bold   head-prime text-center ">
+        Our <span class="text-greentext">Natural Ingredients</span>
+      </h2>
+      <p class="text-center text-gray-700">100% natural ingredients working together to restore balance 🌿</p>
+      </div>
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Slider -->
+        <div class="relative">
+          <div id="ingredientTrack" class="flex gap-6  snap-x snap-mandatory py-10 ">
+            <div class="ingredient-slide-card snap-start">
+              <img src="./assets/ingredints/sivanar-vembu.jpeg" alt="Sivanar vembu">
+              <h3>Sivanar vembu</h3>
+              <p>The master blood purifier helps to stop itching and skin irritation at the earliest.</p>
+            </div>
+
+            <div class="ingredient-slide-card snap-start">
+              <img src="./assets/ingredints/vetpalai-ilai.JPG" alt="Vetpalai ilai">
+              <h3>Vetpalai ilai</h3>
+              <p>The legendary herb for psoriasis which helps in scaling and flaking of the skin.</p>
+            </div>
+
+            <div class="ingredient-slide-card snap-start">
+              <img src="./assets/ingredints/Poovarasam-Pattai-.jpg" alt="Poovarasan pattai">
+              <h3>Poovarasan pattai</h3>
+              <p>It helps clear away deep-seated toxins and reduces redness of the skin</p>
+            </div>
+
+            <div class="ingredient-slide-card snap-start">
+              <img src="./assets/ingredints/nellikai.webp" alt="Nellikai">
+              <h3>Nellikai</h3>
+              <p>It is rich in vitamin c helps to boost skin immunity and repair the damaged skin cells.</p>
+            </div>
+
+            <div class="ingredient-slide-card snap-start">
+              <img src="./assets/ingredints/valuluvai.webp" alt="Vaaluluvai">
+              <h3>Vaaluluvai</h3>
+              <p>It increases the blood flow of the skin and thus prevents skin crackling</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- ================= BENEFITS ================= -->
+  <section id="benefits" class="py-28 ">
+    <!-- Heading -->
+    <div class="max-w-7xl mx-auto px-6 text-center mb-20 space-y-5">
+      <h2 class="text-3xl md:text-5xl font-bold head-prime text-center ">
+        Psoriatic Combo <span class="text-greentext"> key Benefits</span>
+      </h2>
+      <p class="text-gray-500 text-center">
+        Gentle on the body. Powerful on psoriasis 🔥
+      </p>
+    </div> 
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="benefit-box">
+        <!-- Card 1 -->
+        <div class="benefit-card-1 border rounded-xl overflow-hidden shadow-sm bg-white h-[560px] hover:scale-105 hover:shadow-xl hoverEffect ">
+          <div class="relative w-full h-full">
+            <img src="./assets/benefits-image/benefit-img-1.jpg" class="w-full h-full object-cover " alt="">
+            <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0  hoverEffect cursor-pointer">
+              <div class="py-5 px-2 text-center">
+                  <p class="text-white leading-relaxed text-lg font-semibold">
+                    Manage to reduce scaling of skin, itching, and redness that associated with psoriasis.
+                  </p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="benefit-card-2 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect">
+          <div class="relative w-full h-full">
+            <img src="./assets/benefits-image/benefit-img-2.webp" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer">
+              <div class="py-5 px-2 text-center">
+                <p class="text-white leading-relaxed text-lg font-semibold">
+                  Supports internal detoxification and balances aggravated body humors such as vazhi, azhal and iyyam.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="benefit-card-3 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect">
+          <div class="relative w-full h-full">
+            <img src="./assets/benefits-image/benefit-img-3.webp" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer">
+              <div class="py-5 px-2 text-center">
+                <p class="text-white leading-relaxed text-lg font-semibold">
+                  Promotes faster healing of skin lesions and skin regeneration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="benefit-card-4 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect">
+          <div class="relative w-full h-full">
+            <img src="./assets/benefits-image/benefit-img-4.webp" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer">
+              <div class="py-5 px-2 text-center">
+                <p class="text-white leading-relaxed text-lg font-semibold">
+                  Helps in reducing recurrence of the condition and improving overall skin texture.
+                </p>
+              </div>
+            </div>
+          </div> 
+        </div>
+        <!-- Card 5 -->
+        <div class="benefit-card-5 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect">
+          <div class="relative w-full h-full">
+            <img src="./assets/benefits-image/benefit-img-5.webp" class="w-full h-full object-cover" alt="">
+            <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer">
+              <div class="py-5 px-2 text-center">
+                <p class="text-white leading-relaxed text-lg font-semibold">
+                  Enhances and supports long-term skin care.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= HOW TO USE ================= -->
+  <section id="how-to-use" class="py-32  overflow-hidden">
+    
+    <!-- Heading -->
+    <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        How To Use Our <span class="text-greentext">Psoriatic Combo</span>
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+        Follow the correct dosage and application steps for best results.🧐
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+
+      <!-- Card 1 -->
+      <div class="use-card">
+        <div class="card-image">
+          <img src="./assets/benefits-image/benefit-img-3.webp" alt="Sivanaravembu Chooranam">
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">Sivanaravembu Chooranam</h3>
+
+          <p class="card-text">
+            Take <strong>5 grams</strong> with warm water or milk.
+          </p>
+
+          <p class="card-text">
+            Consume <strong>morning & night</strong> after food.
+          </p>
+
+          <div class="card-footer">
+            <span>Next Step</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="use-card">
+        <div class="card-image">
+          <img src="./assets/benefits-image/benefit-img-5.webp" alt="Sivanar Vembu Kushi Thailam">
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">Sivanar Vembu Kuzhi Thailam</h3>
+
+          <p class="card-text">
+            Take <strong>5 drops</strong> with milk.
+          </p>
+
+          <p class="card-text">
+            Or combine with <strong>Sivanar vembu Chooranam</strong>.
+          </p>
+
+          <p class="card-text">
+            Morning & night after food with warm water or milk.
+          </p>
+
+          <div class="card-footer">
+            <span>Next Step</span>
+            <span class="arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="use-card">
+        <div class="card-image">
+          <img src="./assets/benefits-image/benefit-img-4.webp" alt="Psora 111 Oil">
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">Psora 111 Oil</h3>
+
+          <p class="card-text">
+            Apply externally on the affected area.
+          </p>
+
+          <p class="card-text">
+            Gently massage until fully absorbed into the skin.
+          </p>
+
+          <div class="card-footer">
+            <span>- Step End -</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ================= CTA Section ============== -->
+  <section class="">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-xl p-10 md:p-16  border border-greentext/50">
+          <div class="space-y-6">
+            <!-- Heading -->
+            <h2 class="text-3xl  md:text-4xl font-bold text-gray-800 leading-tight">
+              Let's Connect,<br>
+              <span class="text-greentext">Be Healthy</span>
+            </h2>
+            <!-- Description -->
+            <p class="text-gray-600 max-w-2xl mx-auto  text-lg">
+              Connect with Almaa Consultants & Experts <br> for any medical issues.
+            </p>
+            <!-- Button -->
+            <a href="https://api.whatsapp.com/send/?phone=%2B917401403037&text&type=phone_number&app_absent=0" target="_blank" 
+              class="inline-flex items-center gap-3 bg-greentext text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 32 32" 
+                    width="20" 
+                    height="20" 
+                    fill="#ffffff">
+                  <path d="M16 2.933A13.067 13.067 0 0 0 4.133 21.6L2 30l8.533-2.067A13.067 13.067 0 1 0 16 2.933zm0 23.867a10.74 10.74 0 0 1-5.467-1.5l-.4-.233-5.067 1.233 1.333-4.933-.267-.433A10.733 10.733 0 1 1 16 26.8zm5.867-8.033c-.333-.167-1.967-.967-2.267-1.067-.3-.1-.533-.167-.767.167-.233.333-.9 1.067-1.1 1.3-.2.233-.4.267-.733.1-.333-.167-1.4-.517-2.667-1.65-.983-.867-1.65-1.933-1.833-2.267-.183-.333-.017-.517.15-.683.15-.15.333-.4.5-.6.167-.2.233-.333.35-.567.117-.233.058-.433-.029-.6-.087-.167-.767-1.85-1.05-2.533-.275-.667-.55-.583-.767-.6-.2-.017-.433-.017-.667-.017s-.6.083-.917.433c-.317.35-1.2 1.167-1.2 2.85s1.233 3.3 1.4 3.533c.167.233 2.417 3.683 5.85 5.167.817.35 1.45.567 1.95.733.817.267 1.567.233 2.15.142.658-.1 1.967-.8 2.25-1.567.283-.767.283-1.425.2-1.567-.083-.142-.3-.233-.633-.4z"/>
+                </svg>
+              Chat on WhatsApp
+            </a>
+
+          </div>
+          <div>
+            <img src="./assets/doctor-consulting-img.jpg" alt="doctor-consult-img" class="rounded-lg hover:scale-105 hoverEffect shadow-xl">
+          </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- ================= FAQ ================= -->
+  <section id="faq" class="overflow-hidden  py-40">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Heading -->
+      <div class="text-center mb-20 reveal">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+          Questions? <span class="text-greentext">We&#39ve Got Answers</span>
+        </h2>
+        <p class="text-gray-600 max-w-xl mx-auto">
+          Clear, honest answers to help you decide with confidence.
+        </p>
+      </div>
+
+      <!-- FAQ Layout -->
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- QUESTIONS -->
+        <div class="space-y-4 reveal">
+          <button class="faq-tab active" data-faq="1">
+            Which is the best Psoriatic combo?
+          </button>
+          <button class="faq-tab" data-faq="2">
+           Can this combo be useful in psoriasis treatments?
+          </button>
+          <button class="faq-tab" data-faq="3">
+            Can this combo be useful in psoriasis treatments?
+          </button>
+          <button class="faq-tab" data-faq="4">
+            Does this combo prevent the recurrence of psoriasis?
+          </button>
+        </div>
+
+        <!-- ANSWER PANEL -->
+        <div class="faq-panel reveal ">
+          <div class="faq-answer active " data-answer="1">
+            <h3 class="" >Sivanarvembu chooranam</h3>
+            <p>
+              Sivanarvembu kuzhi thylam,Psora oil 111,Triphala chooranam produced by Alma herbals is the best Psoriatic combo
+            </p>
+          </div>
+
+          <div class="faq-answer" data-answer="2">
+            <h3>In many cases yes</h3>
+            <p>
+              The natural key ingredients such as are useful in psoriasis treatment.
+            </p>
+          </div>
+
+          <div class="faq-answer" data-answer="3">
+            <h3>Yes</h3>
+            <p>
+              This combo has only natural ingredients which address the overall skin health of an individual.
+            </p>
+          </div>
+
+          <div class="faq-answer" data-answer="4">
+            <h3>Yes</h3>
+            <p>
+             This combo is aimed at preventing the recurrence of psoriasis by balancing three vital humors of the body and promotes skin health.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ================= Testimonial ================= -->
+  <section id="testimonial" class="py-40 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Heading -->
+      <div class="text-center mb-20">
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">
+          What People Say
+        </h2>
+        <p class="text-gray-500 max-w-xl mx-auto">
+          Real experiences from people who use our product daily
+        </p>
+      </div>
+
+      <!-- Carousel -->
+      <div class="relative flex items-center justify-center">
+
+        <!-- Cards Wrapper -->
+        <div class="testimonial-stack">
+
+          <!-- Card -->
+          <div class="stack-card active">
+            <div class="text-center pb-10">
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>
+              “ALMAA PRODUCTS ARE GOOD IN QUALITY. AFFORDABLE PRICE.
+               THEY ARE TAKING CARE ABOUT THE PATIENTS. ”
+            </p>
+            <div class="profile ">
+              <img class="image" src="./assets/placeholder-image-male.jpg" />
+              <div class="flex gap-1 items-center">
+                <h4>Rajasekaran Sangeetha</h4>
+                <img src="./assets/checklist.png" alt="" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="stack-card active">
+            <div class="text-center pb-10">
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>
+              “We visited Almaa Siddha Care Hospital for fertility treatment
+               and had a positive outcome. The treatment was excellent”
+            </p>
+            <div class="profile ">
+              <img class="image" src="./assets/placeholder-image-female.jpg" />
+              <div class="flex gap-1 items-center">
+                <h4>Varshaa Pandiyan</h4>
+                <img src="./assets/checklist.png" alt="" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="stack-card active">
+            <div class="text-center pb-10">
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>
+              “We visited Almaa sidha Erode we get treated for diabetic and cholesterol.
+               Medicines worked very good and everything came normal. ”
+            </p>
+            <div class="profile ">
+              <img class="image" src="./assets/placeholder-image-female.jpg" />
+              <div class="flex gap-1 items-center">
+                <h4>Zulfiya Fargana</h4>
+                <img src="./assets/checklist.png" alt="" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="stack-card active">
+            <div class="text-center pb-10">
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>
+              “I'm using almaa products and medicines for more than 5 years. Very good results and very effective medicines. ”
+            </p>
+            <div class="profile ">
+              <img class="image" src="./assets/placeholder-image-female.jpg" />
+              <div class="flex gap-1 items-center">
+                <h4>Aishwarya Jayasekar</h4>
+                <img src="./assets/checklist.png" alt="" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="stack-card active">
+            <div class="text-center pb-10">
+              <div class="stars">★★★★★</div>
+            </div>
+            <p>
+              “I am using Almaa Health Products for almost 3 years now and it helped me a lot.
+               I had used the products to cure seasonal flus”
+            </p>
+            <div class="profile ">
+              <img class="image" src="./assets/placeholder-image-female.jpg" />
+              <div class="flex gap-1 items-center">
+                <h4>janani jayapandian</h4>
+                <img src="./assets/checklist.png" alt="" class="w-5 h-5">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="absolute -bottom-16 flex gap-6">
+          <button onclick="prevTestimonial()" class="nav-btn">←</button>
+          <button onclick="nextTestimonial()" class="nav-btn">→</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ================= Contact Section ===============-->
+  <section id="contact" class="py-24 ">
+    <div class="max-w-7xl mx-auto px-6">
+        <!-- Heading -->
+        <div class="flex flex-col items-center mb-4 md:mb-20">
+          <h2 class="text-3xl md:text-5xl font-bold font-heading text-center">Contact Us</h2>
+          <p class=" mt-5 md:mt-2 text-sm md:text-base text-gray-600 mb-3 font-semibold text-center">We&#8217re here to help your healing journey 🌿</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- CONTACT FORM -->
+        <div class="bg-white shadow-xl rounded-3xl p-8 md:p-10">
+
+            <form id="contactForm" class="space-y-5">
+
+            <div>
+                <label class="text-sm font-medium text-green-900">Full Name</label>
+                <input type="text" required
+                class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                <label class="text-sm font-medium text-green-900">Phone</label>
+                <input type="tel" required
+                    class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
+                </div>
+
+                <div>
+                <label class="text-sm font-medium text-green-900">Email</label>
+                <input type="email" required
+                    class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="text-sm font-medium text-green-900">Message</label>
+                <textarea rows="4" required
+                class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none"></textarea>
+            </div>
+
+            <button
+                class="w-full border border-greentext bg-greentext hover:bg-transparent hover:text-greentext text-white py-4 rounded-full font-medium transition duration-300 hover:shadow-lg hover:scale-[1.02]">
+                Send Message
+            </button>
+
+            <p id="successMsg" class="hidden text-green-700 font-medium text-center">
+                🌿 Thank you! We'll contact you soon.
+            </p>
+
+            </form>
+        </div>
+
+        <!-- MAP -->
+        <div class="rounded-3xl overflow-hidden shadow-xl h-[500px]">
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d485.89702549023906!2d80.22468991043931!3d13.024448637973173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a526655c38d2993%3A0x54b714477f05829b!2sAlmaa%20Siddha%20Care%20Multispeciality%20Hospital!5e0!3m2!1sen!2sin!4v1771222747276!5m2!1sen!2sin"
+            class="w-full h-full border-0"
+            loading="lazy">
+            </iframe>
+        </div>
+
+        </div>
+    </div>
+  </section>
+</main>
+<footer class="bg-greentext ">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Main Grid -->
+    <div class="grid gap-5 md:gap-10 md:grid-cols-3 lg:grid-cols-5 py-10">
+      <!-- Brand -->
+      <div class="space-y-5">
+        <h2 class="text-2xl font-bold text-white">ALMAA HERBAL</h2>
+        <p class="text-white/80 text-base ">
+          Almaa Herbal - Naturals Piles Care. 100% Herbal Solution for Piles & Constipation.
+        </p>
+        <!-- Social Icons -->
+        <div class="flex gap-5">
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/accounts/login/?next=%2Falmaaherbalnature%2F&source=omni_redirect" aria-label="Instagram" target="_blank"
+            class="p-1 rounded-full bg-white text-greentext hover:scale-110 hover:shadow-md hover:shadow-black hoverEffect">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="w-6 h-6 ">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                <circle cx="17" cy="7" r="1.2"fill="currentColor"/>
+            </svg>
+          </a>
+          <!-- Twitter -->
+          <a href="https://x.com/almaaherbal_" target="_blank" class="p-1 rounded-full bg-white text-greentext hover:scale-110 hover:shadow-md hover:shadow-black hoverEffect">
+            <svg  viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ">
+                <path d="M18.24 2H21l-6.46 7.39L22 22h-6.78l-5.3-6.88L3.9 22H1.14l6.92-7.9L2 2h6.9l4.8 6.24L18.24
+                2zm-1.19 18h1.88L7.02 4h-2L17.05 20z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/almaherbal"  aria-label="Facebook" target="_blank" 
+            class="p-1 rounded-full bg-white text-greentext hover:scale-110 hover:shadow-md hover:shadow-black hoverEffect">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7
+                c0-1.1.9-2 2-2h3z"/>
+            </svg>
+          </a>
+          <!-- Youtube -->
+          <a href="https://www.youtube.com/@almaaherbalnature"  target="_blank" 
+            class="p-1 rounded-full bg-white text-greentext hover:scale-110 hover:shadow-md hover:shadow-black hoverEffect">
+            <svg   viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 ">
+              <path d="M23.5 6.2s-.2-1.7-.9-2.4c-.8-.9-1.7-.9-2.1-1C17.6 2.5 12 2.5 12 2.5h0s-5.6 0-8.5.3c-.4.1-1.3.1-2.1 1
+                  -.7.7-.9 2.4-.9 2.4S0 8.1 0 10v2c0 1.9.5 3.8.5 3.8s.2 1.7.9 2.4c.8.9 1.9.9 2.4 1
+                  1.7.2 7.2.3 8.2.3 0 0 5.6 0 8.5-.3.4-.1 1.3-.1 2.1-1
+                  .7-.7.9-2.4.9-2.4S24 13.9 24 12v-2c0-1.9-.5-3.8-.5-3.8zM9.5 14.5v-5l5 2.5-5 2.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-xl mb-2 text-white font-semibold">Quick Links</h4>
+        <ul class="space-y-1">
+          <li><a href="#product" class="footer-link">Product</a></li>
+          <li><a href="#about" class="footer-link">About</a></li>
+          <li><a href="#ingredients" class="footer-link">Ingredients</a></li>
+          <li><a href="#benefits" class="footer-link">Benefits</a></li>
+          <li><a href="#benefits" class="footer-link">How To Use</a></li>
+          <li><a href="#faq" class="footer-link">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- policies -->
+      <div>
+        <h4 class="text-xl mb-2 text-white font-semibold">Policies</h4>
+        <ul class="space-y-1">
+          <!-- Shipping -->
+          <li class="flex gap-1 items-center">
+            <a href="https://www.almaherbal.com/shipping-policy" target="_blank" class="footer-link">Shipping</a>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+              <path d="M240-192q-50 0-85-35t-35-85H48v-408q0-29.7 21.15-50.85Q90.3-792 120-792h552v144h120l120 168v168h-72q0 50-35 85t-85 35q-50 0-85-35t-35-85H360q0 50-35 85t-85    35Zm0-72q20.4 0 34.2-13.8Q288-291.6 288-312q0-20.4-13.8-34.2Q260.4-360 240-360q-20.4 0-34.2 13.8Q192-332.4 192-312q0 20.4 13.8 34.2Q219.6-264 240-264ZM120-384h24q17-23 42-35.5t54-12.5q29 0 54 12.5t41.53 35.5H600v-336H120v336Zm600 120q20.4 0 34.2-13.8Q768-291.6 768-312q0-20.4-13.8-34.2Q740.4-360 720-360q-20.4 0-34.2 13.8Q672-332.4 672-312q0 20.4 13.8 34.2Q699.6-264 720-264Zm-48-192 168-1-85-119h-83v120Zm-310-93Z"/>
+            </svg>
+          </li>
+          <li class="flex gap-1 items-center">
+            <a href="https://www.almaherbal.com/returns-&-refund-policy" target="_blank" class="footer-link">Return & Refund Policy</a>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+              <path d="m474-210 102-102-101-102-34 34 42 43q-29 0-56.5-10T378-378q-20-20-31-46.5T336-480q0-16 3-31t9-29l-35-35q-12 22-18.5 45.5T288-480q0 38 14.5 73.5T344-344q29 29 64.5 42.5T484-288l-44 44 34 34Zm173-175q12-22 18.5-45.5T672-480q0-38-15-73.5T615-616q-28-28-65-41.5T474-670l46-46-34-34-102 102 102 102 34-34-44-44q31 0 57.5 10t48.5 32q20 20 31 46.5t11 55.5q0 16-3 31t-9 29l35 35ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/>
+            </svg>
+
+          </li>
+          <li class="flex gap-1 items-center">
+            <a href="https://www.almaherbal.com/terms-&-conditions" target="_blank" class="footer-link">Terms & Conditions</a>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+              <path d="m474-210 102-102-101-102-34 34 42 43q-29 0-56.5-10T378-378q-20-20-31-46.5T336-480q0-16 3-31t9-29l-35-35q-12 22-18.5 45.5T288-480q0 38 14.5 73.5T344-344q29 29 64.5 42.5T484-288l-44 44 34 34Zm173-175q12-22 18.5-45.5T672-480q0-38-15-73.5T615-616q-28-28-65-41.5T474-670l46-46-34-34-102 102 102 102 34-34-44-44q31 0 57.5 10t48.5 32q20 20 31 46.5t11 55.5q0 16-3 31t-9 29l35 35ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-72q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Zm0-312Z"/>
+            </svg>
+
+          </li>
+          <li class="flex gap-1 items-center">
+            <a href="https://www.almaherbal.com/privacy-policy" target="_blank" class="footer-link">Privacy Policy</a>
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff">
+              <path d="M480-96q-136-38-212-160t-76-259v-229l288-120 288 120v229q0 72-22 147t-71 134L553.14-356Q536-345 518-340.5t-38 4.5q-60 0-102-42t-42-102q0-60 42-102t102-42q60 0 102 42t42 102q0 20-5 38.11T604-407l55 55q17-39 27-80t10-83v-181l-216-90-216 90v181q0 105 56.5 203.5T480-171q28-9 51.5-25t44.5-36l51 52q-32 29-68.5 51T480-96Zm.21-312Q510-408 531-429.21t21-51Q552-510 530.79-531t-51-21Q450-552 429-530.79t-21 51Q408-450 429.21-429t51 21Zm-.21-72Z"/>
+            </svg>
+          </li>
+        </ul>
+      </div>
+      <div>
+          <h4 class="text-xl mb-2 text-white font-semibold">Contact Us </h4>
+          <ul class="space-y-2">
+              <li>
+                <a href="mailto:almaahospital@gmail.com" class="inline-block footer-link">almaahospital@gmail.com</a>
+              </li>
+              <li>
+                <a href="" class="inline-block footer-link">+91 7401 403000</a>
+              </li>
+              <li class="flex gap-1 items-center">
+                  <a href="https://api.whatsapp.com/send/?phone=%2B917401403037&text&type=phone_number&app_absent=0" class="inline-block footer-link" target="_blank">
+                    +91 74014 03037
+                  </a>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="#ffffff" class="w-4 h-4 ">
+                    <path d="M20.52 3.48A11.82 11.82 0 0012.05 0C5.43 0 .05 5.38.05 12c0 2.11.55 4.17 1.6 5.99L0 24l6.17-1.62A11.9 11.9 0 0012.05 24C18.67 24 24.05 18.62 24.05 12c0-3.17-1.23-6.16-3.53-8.52zM12.05 21.82a9.77 9.77 0 01-4.97-1.36l-.35-.21-3.66.96.98-3.57-.23-.37a9.76 9.76 0 01-1.49-5.27c0-5.41 4.41-9.82 9.82-9.82 2.62 0 5.08 1.02 6.93 2.88a9.72 9.72 0 012.89 6.94c0 5.41-4.41 9.82-9.82 9.82zm5.39-7.35c-.3-.15-1.76-.87-2.03-.97-.27-.1-.46-.15-.66.15-.19.3-.76.97-.93 1.17-.17.2-.34.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.77-1.64-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.91-2.2-.24-.58-.49-.5-.66-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.49s1.08 2.89 1.23 3.09c.15.2 2.12 3.23 5.14 4.53.72.31 1.28.49 1.71.63.72.23 1.38.2 1.9.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.08-.12-.27-.2-.57-.35z"/>
+                  </svg>
+                </li>
+            </ul>
+      </div>
+      <div>
+        <h4 class="text-xl mb-2 text-white font-semibold">My Account</h4>
+        <ul>
+          <li><a href="https://www.almaherbal.com/account" target="_blank" class="footer-link">Profile</a></li>
+          <li><a href="https://www.almaherbal.com/account-my-order" target="_blank" class="footer-link">Orders</a></li>
+          <li><a href="https://www.almaherbal.com/category" target="_blank" class="footer-link">Products</a></li>
+          <li><a href="https://www.almaherbal.com/support" target="_blank" class="footer-link">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- Bottom -->
+    <div class="py-5 border-t border-green-200  text-center text-base text-gray-300">
+      © 2026 Almaa Herbal Nature Pvt Ltd
+    </div>
+  </div>
+</footer>
+<script src="./script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed</title>
+<link rel="shortcut icon" href="./assets/Almaa Herbal Logo_Without TM.png" type="image/x-icon">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            greentext: "#176803",
+            primary: "#22c55e",
+            soft: "#f0fdf4",
+            button:"#176803",
+            textprimary: "#1f2937",
+            bgone: "#f5f5f5",
+            bgtwo: "#ffffff"
+          }
+        }
+      }
+    }
+  </script>
+<style>
+
+/* Pop animation */
+@keyframes popIn {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.pop {
+  animation: popIn 0.6s ease-out forwards;
+}
+
+/* Falling leaves */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.leaf {
+  position: fixed;
+  top: -10vh;
+  font-size: 24px;
+  animation: fall linear infinite;
+  z-index: 0;
+}
+
+</style>
+</head>
+
+<body class="bg-greentext/10 overflow-hidden relative">
+
+<!-- Falling Leaves -->
+<div id="leafContainer"></div>
+
+<!-- Main Content -->
+<div class="relative z-10 flex items-center justify-center min-h-screen px-6">
+
+  <div class="bg-white rounded-3xl shadow-2xl p-10 text-center max-w-lg w-full pop">
+
+    <!-- Success Icon -->
+    <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center text-4xl text-green-600">
+      ✔
+    </div>
+
+    <h1 class="text-3xl font-bold text-gray-800 mt-6">
+      Thank You for Your Order!
+    </h1>
+
+    <p class="text-gray-600 mt-3">
+      Your order has been placed successfully.  
+      Our team will contact you shortly for confirmation.
+    </p>
+
+    <div class="mt-6 bg-greentext/10 p-4 rounded-xl">
+      <p class="text-sm font-medium text-gray-700">
+        💚 We’re excited to be part of your healing journey.
+      </p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mt-8 grid md:grid-cols-2 gap-5 p-2">
+
+      <a href="./invoice.html" class=" bg-greentext text-white py-3 px-5 rounded-xl font-semibold hover:scale-105 transition">
+        Download Invoice
+      </a>
+
+      <a href="index.html" class="border border-greentext text-greentext py-3 px-5 rounded-xl font-semibold hover:bg-greentext hover:text-white transition">
+        Continue Shopping
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+/* Generate Falling Leaves */
+const container = document.getElementById("leafContainer");
+
+function createLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("leaf");
+
+  leaf.innerHTML = "🍃";
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
+  leaf.style.fontSize = (18 + Math.random() * 18) + "px";
+
+  container.appendChild(leaf);
+
+  setTimeout(() => {
+    leaf.remove();
+  }, 10000);
+}
+
+setInterval(createLeaf, 200);
+
+/* Invoice Download */
+function downloadInvoice() {
+  const invoiceContent = `
+  INVOICE
+  ----------------------------
+  Product: PSORIATIC COMBO
+  Thank you for your purchase.
+  For support contact: 9363406276
+  `;
+
+  const blob = new Blob([invoiceContent], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "invoice.txt";
+  link.click();
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./assets/Almaa Herbal Logo_Without TM.png" type="image/x-icon">
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            greentext: "#176803",
+            primary: "#22c55e",
+            soft: "#f0fdf4",
+            button:"#176803",
+            textprimary: "#1f2937",
+            bgone: "#f5f5f5",
+            bgtwo: "#ffffff"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ====================== Checkout page ====================== */
+    .input{
+      border:1px solid #ddd;
+      padding:14px;
+      border-radius:12px;
+      outline:none;
+      transition:0.3s;
+    }
+
+    .input:focus{
+      border-color:#16a34a;
+      box-shadow:0 0 0 2px #bbf7d0;
+    }
+
+
+</style>
+</head>
+<body class="bg-gray-50">
+  <main>
+  <section class="py-20 ">
+    <div class="text-center mb-10">
+        <h2 class="font-bold text-4xl">Secure Your Order</h2>
+        <p class="mt-2">Complete your purchase and take the first step toward healthier skin 💪</p>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+      <!-- LEFT FORM -->
+      <div class="bg-white p-3 md:p-8 rounded-3xl shadow-xl">
+
+        <h2 class="text-3xl font-bold mb-6">Shipping Details</h2>
+
+        <form class="grid grid-cols-2 gap-6">
+
+          <input class="input focus:ring-1 focus:ring-greentext outline-none" placeholder="First Name" required>
+          <input class="input focus:ring-1 focus:ring-greentext outline-none" placeholder="Last Name">
+
+          <input class="input col-span-2 focus:ring-1 focus:ring-greentext outline-none" placeholder="Mobile Number" required>
+          <input class="input col-span-2 focus:ring-1 focus:ring-greentext outline-none" placeholder="Email Address" required>
+
+          <input class="input col-span-2 focus:ring-1 focus:ring-greentext outline-none" placeholder="Door No" required>
+          <input class="input col-span-2 focus:ring-1 focus:ring-greentext outline-none" placeholder="Street" required>
+
+          <input class="input focus:ring-1 focus:ring-greentext outline-none" placeholder="City" required>
+          <input class="input focus:ring-1 focus:ring-greentext outline-none" placeholder="State" required>
+
+          <input class="input col-span-2 focus:ring-1 focus:ring-greentext outline-none" placeholder="Pincode" required>
+
+        </form>
+      </div>
+      <!-- RIGHT SUMMARY -->
+      <div class="bg-white p-5 md:p-10 rounded-3xl shadow-xl sticky top-20 h-fit">
+
+        <h3 class="text-2xl font-semibold mb-6">Order Summary</h3>
+
+        <!-- Product Info -->
+        <div class="flex justify-between mb-4">
+          <span id="summaryProduct" class="text-lg font-semibold text-greentext"></span>
+          <span id="summaryPrice" class="text-lg  font-medium text-greentext"></span>
+        </div>
+
+        <!-- Quantity -->
+        <div class="mt-6">
+          <div class="flex items-center gap-2">
+            
+            <button id="decreaseBtn"
+              class="w-10 h-10 border border-greentext bg-greentext text-white rounded-lg text-xl font-bold hover:bg-transparent hover:text-greentext">
+              -
+            </button>
+
+            <input type="number"
+              id="quantity"
+              value="1"
+              readonly
+              class="w-16 text-center border rounded-lg py-2 font-semibold">
+
+            <button id="increaseBtn"
+              class="w-10 h-10 border border-greentext bg-greentext text-white rounded-lg text-xl font-bold hover:bg-transparent hover:text-greentext">
+              +
+            </button>
+
+          </div>
+        </div>
+
+        
+        <!-- Price Details -->
+        <div class="mt-6  space-y-3">
+          <div class="flex justify-between">
+            <span>Price per Pack</span>
+            <span>₹<span id="pricePerPack" class="font-medium"></span></span>
+          </div>
+
+          <div class="flex justify-between">
+            <span>Shipping</span>
+            <span>₹<span id="shippingCharge" class="font-medium"></span></span>
+          </div>
+
+          <div class="flex justify-between font-bold text-xl text-greentext pt-2 border-t">
+            <span>Total</span>
+            <span>₹<span id="totalPrice"></span></span>
+          </div>
+        </div>
+        <!-- Payment Method -->
+        <div class="mt-4">
+          <label class="block font-semibold mb-3">Payment Method</label>
+
+          <div class="flex gap-10">
+            <button id="onlineBtn" class="flex-1 border border-greentext text-greentext py-3 rounded-xl font-medium hover:scale-105 hoverEffect ">
+              Online Payment
+            </button>
+            <button id="codBtn" class="flex-1 border border-greentext text-greentext py-3 rounded-xl font-medium hover:scale-105 hoverEffect">
+              Cash on Delivery
+            </button>
+          </div>
+        </div>
+
+        <button class="w-full mt-6 text-xl border border-greentext bg-greentext text-white py-3 rounded-xl font-semibold hover:bg-transparent hover:text-greentext hover:scale-105 transition">
+          Place Order
+        </button>
+        <!-- Free Delivery Marquee -->
+        <marquee class="text-greentext py-1 rounded-xl font-medium">
+          🚚 Free Delivery on All Prepaid Orders
+        </marquee>
+      </div>
+    </div>
+  </section>
+</main>
+<script>
+
+  const quantityInput = document.getElementById("quantity");
+  const increaseBtn = document.getElementById("increaseBtn");
+  const decreaseBtn = document.getElementById("decreaseBtn");
+
+  const summaryProduct = document.getElementById("summaryProduct");
+  const summaryPrice = document.getElementById("summaryPrice");
+
+  const pricePerPackEl = document.getElementById("pricePerPack");
+  const totalPriceEl = document.getElementById("totalPrice");
+  const shippingEl = document.getElementById("shippingCharge");
+
+  const onlineBtn = document.getElementById("onlineBtn");
+  const codBtn = document.getElementById("codBtn");
+
+  const maxQty = 10;
+  const minQty = 1;
+
+  let shipping = 100; // default COD
+  let paymentMethod = "COD";
+
+  // Get URL Data
+  const params = new URLSearchParams(window.location.search);
+
+  let productName = params.get("PSORIATIC COMBO") || "PSORIATIC COMBO";
+  let packQty = parseInt(params.get("pack")) || 1;
+  let pricePerPack = parseInt(params.get("price")) || 2884;
+
+  // Set Initial Values
+  quantityInput.value = packQty;
+  pricePerPackEl.innerText = pricePerPack;
+  summaryProduct.innerText = productName + " (Pack of " + packQty +")";
+  summaryPrice.innerText = "₹" + (pricePerPack * packQty);
+
+  updateTotal();
+  updateButtons();
+
+  // Increase
+  increaseBtn.addEventListener("click", () => {
+    let qty = parseInt(quantityInput.value);
+    if (qty < maxQty) {
+      qty++;
+      quantityInput.value = qty;
+      updateTotal();
+    }
+    updateButtons();
+  });
+
+  // Decrease
+  decreaseBtn.addEventListener("click", () => {
+    let qty = parseInt(quantityInput.value);
+    if (qty > minQty) {
+      qty--;
+      quantityInput.value = qty;
+      updateTotal();
+    }
+    updateButtons();
+  });
+
+  // Payment Selection
+  onlineBtn.addEventListener("click", () => {
+    paymentMethod = "ONLINE";
+    shipping = 0;
+    stylePaymentButtons();
+    updateTotal();
+  });
+
+  codBtn.addEventListener("click", () => {
+    paymentMethod = "COD";
+    shipping = 100;
+    stylePaymentButtons();
+    updateTotal();
+  });
+
+  // Update Total
+  function updateTotal() {
+    let qty = parseInt(quantityInput.value);
+    let subtotal = qty * pricePerPack;
+    let total = subtotal + shipping;
+
+    shippingEl.innerText = shipping;
+    totalPriceEl.innerText = total;
+    summaryPrice.innerText = "₹" + subtotal;
+    summaryProduct.innerText = productName + " (Pack of " +  quantityInput.value + ")";
+  }
+
+  // Disable Buttons Logic
+  function updateButtons() {
+    let qty = parseInt(quantityInput.value);
+
+    decreaseBtn.disabled = qty <= minQty;
+    increaseBtn.disabled = qty >= maxQty;
+
+    decreaseBtn.classList.toggle("opacity-50", qty <= minQty);
+    increaseBtn.classList.toggle("opacity-50", qty >= maxQty);
+  }
+
+  // Payment Button Styling
+  function stylePaymentButtons() {
+    onlineBtn.classList.remove("bg-greentext", "text-white");
+    codBtn.classList.remove("bg-greentext", "text-white");
+
+    if (paymentMethod === "ONLINE") {
+      onlineBtn.classList.add("bg-greentext", "text-white");
+    } else {
+      codBtn.classList.add("bg-greentext", "text-white");
+    }
+  }
+
+  // Default highlight COD
+  stylePaymentButtons();
+
+</script>
+</body>
+</html>
