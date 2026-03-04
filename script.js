@@ -22,9 +22,9 @@ menuBtn.addEventListener('click', () => {
 
 // Close menu on link click
 mobileLinks.forEach(link => {
-link.addEventListener('click', () => {
-    mobileMenu.style.maxHeight = null;
-});
+  link.addEventListener('click', () => {
+      mobileMenu.style.maxHeight = null;
+  });
 });
 menuBtn.addEventListener("click", () => {
 mobileMenu.classList.toggle("open");
@@ -37,16 +37,6 @@ if (mobileMenu.classList.contains("open")) {
     mobileMenu.style.maxHeight = null;
     mobileMenu.classList.add("opacity-0", "scale-95", );
 }
-});
-
-const navbar = document.getElementById("navbar");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add("shadow-md");
-  } else {
-    navbar.classList.remove("shadow-md");
-  }
 });
 
 // =================== Scroll reveal =================
@@ -169,27 +159,34 @@ const slides = document.querySelectorAll(".slide");
 const thumbs = document.querySelectorAll(".thumb");
 const wrapper = document.querySelector(".main-image-wrapper");
 
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeLightbox = document.getElementById("closeLightbox");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const imageCounter = document.getElementById("imageCounter");
+
 let index = 0;
 const slideDuration = 4000;
-let autoSlide; // store interval
+let autoSlide;
 
-/* Update Slide */
+/* ================= UPDATE SLIDE ================= */
 function updateSlide(i){
   index = i;
   sliderTrack.style.transform = `translateX(-${index * 100}%)`;
 
-  thumbs.forEach(t => t.classList.remove("active"));
-  thumbs[index].classList.add("active");
+  thumbs.forEach(t => t.classList.remove("active")); 
+  thumbs[index].classList.add("active"); 
 }
 
-/* Thumbnail Click */
+/* ================= THUMB CLICK ================= */
 thumbs.forEach(thumb => {
   thumb.addEventListener("click", () => {
     updateSlide(parseInt(thumb.dataset.index));
   });
 });
 
-/* Start Auto Slide */
+/* ================= AUTO SLIDE ================= */
 function startAutoSlide() {
   autoSlide = setInterval(() => {
     index = (index + 1) % slides.length;
@@ -197,37 +194,92 @@ function startAutoSlide() {
   }, slideDuration);
 }
 
-/* Stop Auto Slide */
 function stopAutoSlide() {
   clearInterval(autoSlide);
 }
 
-/* Pause on Hover */
 wrapper.addEventListener("mouseenter", stopAutoSlide);
 wrapper.addEventListener("mouseleave", startAutoSlide);
 
-/* Initialize */
 startAutoSlide();
 
-// zoom on mousehover Animation 
+/* ================= DESKTOP ZOOM ONLY ================= */
+if (window.innerWidth > 768) {
 
-wrapper.addEventListener("mousemove", (e) => {
-  const rect = wrapper.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  wrapper.addEventListener("mousemove", (e) => {
+    const rect = wrapper.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
-  const percentX = (x / rect.width) * 100;
-  const percentY = (y / rect.height) * 100;
+    const percentX = (x / rect.width) * 100;
+    const percentY = (y / rect.height) * 100;
 
-  const activeSlide = slides[index]; // current slide
+    const activeSlide = slides[index];
 
-  activeSlide.style.transformOrigin = `${percentX}% ${percentY}%`;
-  activeSlide.style.transform = "scale(1.6)";
+    activeSlide.style.transformOrigin = `${percentX}% ${percentY}%`;
+    activeSlide.style.transform = "scale(1.6)";
+  });
+
+  wrapper.addEventListener("mouseleave", () => {
+    slides[index].style.transform = "scale(1)";
+    slides[index].style.transformOrigin = "center center";
+  });
+}
+
+/* ================= OPEN LIGHTBOX ================= */
+wrapper.addEventListener("click", () => {
+  lightbox.classList.remove("hidden");
+  lightbox.classList.add("flex");
+  updateLightbox();
+  stopAutoSlide();
 });
 
-wrapper.addEventListener("mouseleave", () => {
-  slides[index].style.transform = "scale(1)";
-  slides[index].style.transformOrigin = "center center";
+/* ================= CLOSE LIGHTBOX ================= */
+closeLightbox.addEventListener("click", () => {
+  lightbox.classList.add("hidden");
+  lightbox.classList.remove("flex");
+  startAutoSlide();
+});
+
+/* ================= UPDATE LIGHTBOX ================= */
+function updateLightbox(){
+  lightboxImage.src = slides[index].src;
+  imageCounter.textContent = `${index + 1} / ${slides.length}`;
+}
+
+/* ================= NEXT / PREV ================= */
+nextBtn.addEventListener("click", () => {
+  index = (index + 1) % slides.length;
+  updateSlide(index);
+  updateLightbox();
+});
+
+prevBtn.addEventListener("click", () => {
+  index = (index - 1 + slides.length) % slides.length;
+  updateSlide(index);
+  updateLightbox();
+});
+
+/* ================= MOBILE SWIPE ================= */
+let startX = 0;
+
+lightbox.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+});
+
+lightbox.addEventListener("touchend", (e) => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    // swipe left
+    index = (index + 1) % slides.length;
+  } else if (endX - startX > 50) {
+    // swipe right
+    index = (index - 1 + slides.length) % slides.length;
+  }
+
+  updateSlide(index);
+  updateLightbox();
 });
 
 let selectedPack = 1;
