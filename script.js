@@ -12,13 +12,13 @@ const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileLinks = document.querySelectorAll('.mobile-link');
 
-menuBtn.addEventListener('click', () => {
-  if (mobileMenu.style.maxHeight) {
-      mobileMenu.style.maxHeight = null;
-  } else {
-      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
-  }
-});
+// menuBtn.addEventListener('click', () => {
+//   if (mobileMenu.style.maxHeight) {
+//       mobileMenu.style.maxHeight = null;
+//   } else {
+//       mobileMenu.style.maxHeight = mobileMenu.scrollHeight + "px";
+//   }
+// });
 
 // Close menu on link click
 mobileLinks.forEach(link => {
@@ -160,6 +160,7 @@ const thumbs = document.querySelectorAll(".thumb");
 const wrapper = document.querySelector(".main-image-wrapper");
 
 const lightbox = document.getElementById("lightbox");
+const lightboxSlider = document.getElementById("lightboxslider");
 const lightboxImage = document.getElementById("lightboxImage");
 const closeLightbox = document.getElementById("closeLightbox");
 const prevBtn = document.getElementById("prevBtn");
@@ -175,8 +176,8 @@ function updateSlide(i){
   index = i;
   sliderTrack.style.transform = `translateX(-${index * 100}%)`;
 
-  thumbs.forEach(t => t.classList.remove("active")); 
-  thumbs[index].classList.add("active"); 
+  thumbs.forEach(t => t.classList.remove("active"));
+  thumbs[index].classList.add("active");
 }
 
 /* ================= THUMB CLICK ================= */
@@ -249,12 +250,14 @@ function updateLightbox(){
 
 /* ================= NEXT / PREV ================= */
 nextBtn.addEventListener("click", () => {
+  lightboxSlider.style.transform = `translatex${index * 100}%`
   index = (index + 1) % slides.length;
   updateSlide(index);
   updateLightbox();
 });
 
 prevBtn.addEventListener("click", () => {
+  lightboxSlider.style.transform = `translatex-${index * 100}%`
   index = (index - 1 + slides.length) % slides.length;
   updateSlide(index);
   updateLightbox();
@@ -294,12 +297,12 @@ packButtons.forEach(btn => {
 
     // Remove active style
     packButtons.forEach(b => {
-      b.classList.remove("text-white","bg-greentext");
+      b.classList.remove("text-white","bg-greentext/80");
       
     });
 
     // Add active style
-    btn.classList.add("text-white","bg-greentext");
+    btn.classList.add("text-white","bg-greentext/80");
 
 
     selectedPack = btn.dataset.pack;
