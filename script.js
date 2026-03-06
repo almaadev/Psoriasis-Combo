@@ -250,14 +250,12 @@ function updateLightbox(){
 
 /* ================= NEXT / PREV ================= */
 nextBtn.addEventListener("click", () => {
-  lightboxSlider.style.transform = `translatex${index * 100}%`
   index = (index + 1) % slides.length;
   updateSlide(index);
   updateLightbox();
 });
 
 prevBtn.addEventListener("click", () => {
-  lightboxSlider.style.transform = `translatex-${index * 100}%`
   index = (index - 1 + slides.length) % slides.length;
   updateSlide(index);
   updateLightbox();
