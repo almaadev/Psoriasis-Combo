@@ -193,12 +193,12 @@
 }
 
 .thumb {
+  border: 1px solid #139141;
   width: 80px;
   height: 80px;
   object-fit: contain;
-  border-radius: 2px;
+  border-radius: 5px;
   cursor: pointer;
-  border: 1px solid transparent;
   transition: 0.3s;
   opacity: 0.5;
 }
@@ -226,14 +226,11 @@
 }
 
 @media (max-width: 768px) {
-      .thumb-row {
-        overflow-y: hidden;
-        overflow-x: scroll;
-        scroll-behavior: smooth;
-      }
+    .thumb{
+      width: 50px;
+      height: 50px;
+    }
   }
-
-
 /* =========================== How to use Section ==================== */
 /* Card Container */
 .use-card {
