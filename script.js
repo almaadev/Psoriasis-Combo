@@ -58,12 +58,12 @@ reveals.forEach(el => observer.observe(el));
 
 
 // =========== hero section ==============
-
+const heroPrevBtn = document.getElementById("prev-btn");
+const heroNextBtn = document.getElementById("next-btn");
 const slider = document.getElementById("heroSlider");
 const dots = document.querySelectorAll(".hero-dot");
 let currentSlide = 0;
 const totalSlides = slider.children.length;
-
 function goToSlide(index) {
   currentSlide = index;
   slider.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -73,16 +73,52 @@ function goToSlide(index) {
 }
 
 // Auto slide
-setInterval(() => {
+function nextSlide(){
   currentSlide = (currentSlide + 1) % totalSlides;
   goToSlide(currentSlide);
-}, 5000);
+}
 
+function prevSlide(){
+  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+  goToSlide(currentSlide);
+}
+
+heroNextBtn.addEventListener("click", nextSlide);
+heroPrevBtn.addEventListener("click", prevSlide);
+
+setInterval(nextSlide, 10000);
 // Dot click
 dots.forEach((dot, i) => {
   dot.addEventListener("click", () => goToSlide(i));
 });
 
+let touchStartX = 0;
+let touchEndX = 0;
+
+slider.addEventListener("touchstart", (e) => {
+  touchStartX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", (e) => {
+  touchEndX = e.changedTouches[0].clientX;
+  handleSwipe();
+});
+
+function handleSwipe(){
+
+  const swipeDistance = touchStartX - touchEndX;
+
+  if (swipeDistance > 50){
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+  }
+
+  if (swipeDistance < -50){
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(currentSlide);
+  }
+
+}
 //============== Igredients section animation ===================
 
  

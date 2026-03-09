@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="style.css">
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
 
   <!-- Tailwind Config -->
   <script>
@@ -22,6 +25,10 @@
             textprimary: "#1f2937",
             bgone: "#f5f5f5",
             bgtwo: "#ffffff"
+          },
+          fontFamily:{
+            
+
           }
         }
       }
@@ -30,7 +37,7 @@
 
 </head>
 
-<body class=" overflow-x-hidden ">
+<body class="overflow-x-hidden ">
 
   <!-- ================= HEADER ================= -->
   <header id="navbar" class="sticky top-0 inset-x-0 z-40 transition-all duration-300 bg-bgone relative shadow-xl">
@@ -87,23 +94,41 @@
 <main class="">
     <!-- ================= HERO ================= -->
     <!-- HERO SLIDER -->
-  <section id="home" class="h-[80vh] relative overflow-hidden ">
+  <section id="home" class="h-[80vh] relative overflow-hidden group">
       <!-- SLIDES -->
-      <div id="heroSlider" class=" flex h-full transition-transform duration-700 ease-in-out border">
+      <div id="heroSlider" class="flex h-full transition-transform duration-700 ease-in-out">
         <!-- SLIDE 1 -->
-        <a href="./checkout.html" class="block h-full min-w-full relative">
-          <img src="./assets/banner-image/Psoriasis-Symptoms_Blog-image.webp" alt="banner-img1" class="min-w-full bg-cover h-full">
-          <div class="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center bg-black/40">
-            <div class="space-y-5">
-              <h2 class="text-5xl font-bold text-center text-white">Struggling with Dry, Scaly & Itchy Skin?</h2>
-              <p class="text-xl  text-center text-gray-300">Traditional herbal combo to healthier skin appearance</p>
+        <a href="./checkout.html" class="relative block min-w-full overflow-hidden">
+          <!-- Image -->
+          <picture>
+            <source media="(max-width:768px)" srcset="./assets/banner-image/mobile-banner.png" class="max-w-full h-auto object-cover ">
+            <img   src="./assets/banner-image/Psoriasis combo Siled (1).jpg"  alt="banner" class="min-w-full h-full object-cover object-center" >
+          </picture>
+          <!-- Overlay -->
+          <div class="absolute inset-0 flex py-10 md:items-center justify-center md:justify-start">
+            <div class="max-w-xl px-6 md:px-10 lg:ml-20 xl:ml-32 text-center md:text-left space-y-4 md:space-y-6 lg:space-y-8">
+              <!-- Heading -->
+              <h2 class=" text-xl sm:text-2xl md:text-3xl  lg:text-4xl xl:text-5xl font-semibold text-greentext leading-tight ">
+                Struggling with Dry, Scaly & Itchy Skin?
+              </h2>
+              <!-- Description -->
+              <p class="text-sm sm:text-base  md:text-lg lg:text-xl text-white/90">
+                Traditional herbal combo to healthier skin appearance
+              </p>
+              <!-- Button -->
+              <div class="flex justify-center md:justify-start">
+                <button class="border-2 border-greentext px-4 py-2 md:px-6 md:py-3 rounded-full font-semibold text-greentext transition hover:scale-105">
+                  Order Now
+                  <span class="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </button>
+              </div>
             </div>
           </div>
         </a>
         <!-- SLIDE 2 -->
-        <a href="./checkout.html" class="block min-w-full relative">
+        <a href="./checkout.html" class="block min-w-full relative ">
           <img src="./assets/banner-image/Psoriasis-Causes-Symptoms.jpg" alt="banner-img2" class="min-w-full bg-cover h-full">
-          <div class="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center bg-black/40">
+          <div class="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center bg-black/10">
             <div class="space-y-5">
               <h2 class="text-5xl font-bold text-center text-white">Herbal Support for Psoriasis ! ! !</h2>
               <p class="text-xl  text-center text-gray-300">Powered by traditional herbs like Sivanar Vembu, Vetpalai, & Nellikai</p>
@@ -112,8 +137,8 @@
         </a>
         <!-- SLIDE 3 -->
         <a href="./checkout.html" class="block min-w-full relative"> 
-          <img src="./assets/banner-image/calm-the-itch-image-3.jpg" alt="banner-img3" class="min-w-full bg-cover h-full">
-          <div class="absolute inset-0 w-[100%] h-[100%] flex justify-center items-center bg-black/40">
+          <img src="./assets/banner-image/product-banner.jpeg" alt="banner-img3" class="min-w-full bg-cover h-full">
+          <div class="absolute inset-0 w-[100%] h-[100%] flex justify-start items-center bg-black/10">
             <div class="space-y-5">
               <h2 class="text-5xl font-bold text-center text-white">Almaa Psoriasis Combo</h2>
               <p class="text-xl  text-center text-gray-300">When Skin Irritation Keeps Coming Back…</p>
@@ -121,6 +146,12 @@
           </div>
         </a>
       </div>
+      <button id="prev-btn" class="hidden md:flex absolute top-[50%] left-[5%]  text-3xl px-3 py-1 text-white/0 group-hover:text-white/90 rounded-full font-bold z-50 hoverEffect">
+        &#10094;
+      </button>
+      <button id="next-btn" class="hidden md:flex absolute top-[50%] right-[5%] text-3xl px-3  py-1 text-white/0 group-hover:text-white/90 rounded-full font-bold z-50 hoverEffect">
+        &#10095;
+      </button>
       <!-- DOTS -->
       <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
         <span class="hero-dot active"></span>
@@ -218,22 +249,14 @@
                 <div class="grid grid-cols-2  gap-2">
 
                   <!-- Pack 1 -->
-                  <button 
-                    class="pack-btn border border-greentext text-white bg-greentext/80 hover:scale-105 text-center transition"
-                    data-pack="1"
-                    data-price="2884"
-                    data-old="3845">
-
+                  <button  class="pack-btn border border-greentext text-white bg-greentext/80 hover:scale-105 text-center transition" data-pack="1" data-price="2884" data-old="3845">
                     <p class="font-semibold text-lg">Pack of 1</p>
                     <p class="font-bold text-xl">₹2884</p>
                     <p class="text-gray-400 line-through text-sm">₹3845</p>
                   </button>
 
                   <!-- Pack 2 -->
-                  <button  class="pack-btn border border-greentext hover:scale-105 rounded-2xl text-center transition"
-                    data-pack="2"
-                    data-price="2884"
-                    data-old="7690">
+                  <button  class="pack-btn border border-greentext hover:scale-105 rounded-2xl text-center transition" data-pack="2" data-price="2884" data-old="7690">
                     <p class="font-semibold text-lg">Pack of 2</p>
                     <p class="font-bold text-xl">₹5768</p>
                     <p class="text-gray-400 line-through text-sm">₹7690</p>
@@ -481,7 +504,6 @@
   </section>
   <!-- ================= HOW TO USE ================= -->
   <section id="how-to-use" class="py-32  overflow-hidden">
-    
     <!-- Heading -->
     <div class="max-w-7xl mx-auto px-6 text-center mb-20">
       <h2 class="text-4xl md:text-5xl font-bold mb-6">
@@ -498,7 +520,7 @@
       <!-- Card 1 -->
       <div class="use-card">
         <div class="card-image">
-          <img src="./assets/benefits-image/benefit-img-3.webp" alt="Sivanaravembu Chooranam">
+          <img src="./assets/Product-image/Sivanar Vembu Chooranam.webp" alt="Sivanaravembu Chooranam">
         </div>
 
         <div class="card-content">
@@ -522,7 +544,7 @@
       <!-- Card 2 -->
       <div class="use-card">
         <div class="card-image">
-          <img src="./assets/benefits-image/benefit-img-5.webp" alt="Sivanar Vembu Kushi Thailam">
+          <img src="./assets/Product-image/Sivanar Vembu Kuzhi Thailam.webp" alt="Sivanar Vembu Kushi Thailam">
         </div>
 
         <div class="card-content">
@@ -550,7 +572,7 @@
       <!-- Card 3 -->
       <div class="use-card">
         <div class="card-image">
-          <img src="./assets/benefits-image/benefit-img-4.webp" alt="Psora 111 Oil">
+          <img src="./assets/Product-image/Psora 111 Oil.webp" alt="Psora 111 Oil">
         </div>
 
         <div class="card-content">
@@ -617,7 +639,7 @@
           Questions? <span class="text-greentext">We&#39ve Got Answers</span>
         </h2>
         <p class="text-gray-600 max-w-xl mx-auto">
-          Clear, honest answers to help you decide with confidence.
+          Clear, honest answers to help you decide with confidence 😇
         </p>
       </div>
 
@@ -706,7 +728,7 @@
           What People Say
         </h2>
         <p class="text-gray-500 max-w-xl mx-auto">
-          Real experiences from people who use our product daily
+          Real experiences from people who use our product daily 🤗
         </p>
       </div>
 
@@ -820,49 +842,62 @@
           <p class=" mt-5 md:mt-2 text-sm md:text-base text-gray-600 mb-3 font-semibold text-center">We&#8217re here to help your healing journey 🌿</p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="grid md:grid-cols-2 gap-12 items-start ">
 
         <!-- CONTACT FORM -->
-        <div class="bg-white shadow-xl rounded-3xl p-8 md:p-10">
-
-            <form id="contactForm" class="space-y-5">
-
-            <div>
-                <label class="text-sm font-medium text-green-900">Full Name</label>
-                <input type="text" required
-                class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
+        <div class="bg-white shadow-xl rounded-3xl p-8  h-[500px] ">
+          <div class="space-y-6">
+            <h4 class="text-xl font-semibold px-3">ALMAA HERBAL NATURE Pvt Ltd</h4>
+            <!-- address -->
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" class="text-greentext">
+                  <path d="M536.5-503.5Q560-527 560-560t-23.5-56.5Q513-640 480-640t-56.5 23.5Q400-593 400-560t23.5 56.5Q447-480 480-480t56.5-23.5ZM480-186q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/>
+                </svg>
+                <h2 class="font-semibold text-greentext">Address</h2>
+              </div>
+              <div class="px-5">
+                <p>#10, Pillaiyar Koil Street, Saidapet, Chennai - 600015, Tamil Nadu, India</p>
+              </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                <label class="text-sm font-medium text-green-900">Phone</label>
-                <input type="tel" required
-                    class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
-                </div>
-
-                <div>
-                <label class="text-sm font-medium text-green-900">Email</label>
-                <input type="email" required
-                    class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none">
-                </div>
+            <!-- E mail -->
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" class="text-greentext">
+                  <path d="M480-440 160-640v400h360v80H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v280h-80v-200L480-440Zm0-80 320-200H160l320 200ZM760-40l-56-56 63-64H600v-80h167l-64-64 57-56 160 160L760-40ZM160-640v440-240 3-283 80Z"/>
+                </svg>
+                <h2 class="font-semibold text-greentext">Email</h2>
+              </div>
+              <div class="px-5">
+                <p>almaahospital@gmail.com</p>
+              </div>
             </div>
-
-            <div>
-                <label class="text-sm font-medium text-green-900">Message</label>
-                <textarea rows="4" required
-                class="w-full mt-1 p-3 rounded-lg border border-greentext/50 focus:ring-1 focus:ring-greentext outline-none"></textarea>
+            <!-- Phone -->
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" class="text-greentext">
+                  <path d="M760-480q0-117-81.5-198.5T480-760v-80q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480h-80Zm-160 0q0-50-35-85t-85-35v-80q83 0 141.5 58.5T680-480h-80Zm198 360q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/>
+                </svg>
+                <h2 class="font-semibold text-greentext">Phone</h2>
+              </div>
+              <div class="px-5">
+                <p>+91-7401403008</p>
+              </div>
             </div>
-
-            <button
-                class="w-full border border-greentext bg-greentext hover:bg-transparent hover:text-greentext text-white py-4 rounded-full font-medium transition duration-300 hover:shadow-lg hover:scale-[1.02]">
-                Send Message
-            </button>
-
-            <p id="successMsg" class="hidden text-green-700 font-medium text-center">
-                🌿 Thank you! We'll contact you soon.
-            </p>
-
-            </form>
+            <!-- Watsapp -->
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"  width="24"  height="24"  fill="currentColor" class="text-greentext" >
+                  <path d="M16 2.933A13.067 13.067 0 0 0 4.133 21.6L2 30l8.533-2.067A13.067 13.067 0 1 0 16 2.933zm0 23.867a10.74 10.74 0 0 1-5.467-1.5l-.4-.233-5.067 1.233 1.333-4.933-.267-.433A10.733 10.733 0 1 1 16 26.8zm5.867-8.033c-.333-.167-1.967-.967-2.267-1.067-.3-.1-.533-.167-.767.167-.233.333-.9 1.067-1.1 1.3-.2.233-.4.267-.733.1-.333-.167-1.4-.517-2.667-1.65-.983-.867-1.65-1.933-1.833-2.267-.183-.333-.017-.517.15-.683.15-.15.333-.4.5-.6.167-.2.233-.333.35-.567.117-.233.058-.433-.029-.6-.087-.167-.767-1.85-1.05-2.533-.275-.667-.55-.583-.767-.6-.2-.017-.433-.017-.667-.017s-.6.083-.917.433c-.317.35-1.2 1.167-1.2 2.85s1.233 3.3 1.4 3.533c.167.233 2.417 3.683 5.85 5.167.817.35 1.45.567 1.95.733.817.267 1.567.233 2.15.142.658-.1 1.967-.8 2.25-1.567.283-.767.283-1.425.2-1.567-.083-.142-.3-.233-.633-.4z"/>
+                </svg>
+                <h2 class="font-semibold text-greentext">Whatsapp</h2>
+              </div>
+              <div class="px-5">
+                <p>+91-7401403008</p>
+              </div>
+            </div>
+          </div>
+          
         </div>
 
         <!-- MAP -->

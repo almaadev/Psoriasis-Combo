@@ -52,15 +52,10 @@
     transition: all 0.3s ease-in-out;
 }
 /* ======== hero banner css ========== */
-#heroSlider div{
-  height: auto;
-  object-fit: cover;
-
-}
 
 .hero-dot {
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   border-radius: 9999px;
   background: #ffffff85;
   cursor: pointer;
@@ -69,8 +64,9 @@
 
 .hero-dot.active {
   background: #fff;
-  width: 24px;
+  width: 15px;
 }
+
 /* ====================== ingredients section =============== */
 
 #ingredientTrack{
@@ -193,18 +189,18 @@
 }
 
 .thumb {
-  border: 1px solid #139141;
   width: 80px;
   height: 80px;
   object-fit: contain;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .thumb.active {
-  box-shadow: 0px 7px 7px #a8a7a7;
+  box-shadow: 0px 3px 3px #a8a7a7;
+  border: 2px solid #139141;
   opacity: 1;
 }
 
@@ -220,16 +216,18 @@
 }
 
 .pack-btn{
-  padding:12px 24px;
+  padding:5px 5px;
   border-radius:12px;
   font-weight:600;
 }
 
-@media (max-width: 768px) {
-    .thumb{
-      width: 50px;
-      height: 50px;
+@media (max-width: 1024px) {
+    .thumb-row{
+      overflow-x: scroll;
     }
+    .thumb-row::-webkit-scrollbar {
+  display: none;
+}
   }
 /* =========================== How to use Section ==================== */
 /* Card Container */
