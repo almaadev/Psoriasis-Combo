@@ -355,7 +355,7 @@ packButtons.forEach(btn => {
 // Redirect with data
 buyNowBtn.addEventListener("click", () => {
   window.location.href =
-    `checkout.html?product=PSORIATIC%20COMBO&pack=${selectedPack}&price=${selectedPrice}`;
+    `checkout.php?product=PSORIATIC%20COMBO&pack=${selectedPack}&price=${selectedPrice}`;
 });
 // =============== How to use Section ==============
 
