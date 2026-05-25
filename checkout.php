@@ -144,7 +144,7 @@ include __DIR__ . '/../config.php';
                         <form>
 
                             <div class="form-group">
-                                <input type="text" id="phone" class="modern-input" placeholder="Mobile Number">
+                                <input type="text" id="phone" class="modern-input" placeholder="Mobile Number *">
                             </div>
 
                             <div class="form-group">
@@ -155,34 +155,40 @@ include __DIR__ . '/../config.php';
 
                                 <div class="two-grid">
                                     <div class="form-group">
-                                        <input type="text" id="f-name" class="modern-input" placeholder="First Name">
+                                        <input type="text" id="f-name" class="modern-input" placeholder="First Name *">
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" id="l-name" class="modern-input" placeholder="Last Name">
+                                        <input type="text" id="l-name" class="modern-input" placeholder="Last Name *">
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" id="door-no" class="modern-input" placeholder="Door No">
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" id="street" class="modern-input" placeholder="Street">
                                 </div>
 
                                 <div class="two-grid">
                                     <div class="form-group">
-                                        <input type="text" id="city" class="modern-input" placeholder="City">
+                                        <input type="text" id="door-no" class="modern-input" placeholder="Door No *">
                                     </div>
                                     <div class="form-group">
-                                        <select id="state" class="modern-input">
-                                            <option value="">State</option>
-                                        </select>
+                                        <input type="text" id="street" class="modern-input" placeholder="Street *">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <input type="text" id="pincode" class="modern-input" placeholder="Pincode">
+                                <div class="two-grid">
+                                    <div class="form-group">
+                                        <input type="text" id="location" class="modern-input" placeholder="Location *">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="city" class="modern-input" placeholder="City *">
+                                    </div>
+                                </div>
+
+                                <div class="two-grid">
+                                    <div class="form-group">
+                                        <select id="state" class="modern-input">
+                                            <option value="">State *</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" id="pincode" class="modern-input" placeholder="Postal code *">
+                                    </div>
                                 </div>
 
                             </div>
@@ -962,6 +968,7 @@ include __DIR__ . '/../config.php';
                 };
                 set("door-no", addr.doorno);
                 set("street", addr.street);
+                set("location", addr.location);
                 set("city", addr.city);
                 set("pincode", addr.pincode);
 
@@ -980,23 +987,38 @@ include __DIR__ . '/../config.php';
                 if (!selectedAddressId) console.warn("Address auto-fill: address_id missing in response");
             }
 
-            // Locks name fields after auto-fill (prevents customer mismatch)
-            function lockNameFields() {
-                const fn = document.getElementById("f-name");
-                const ln = document.getElementById("l-name");
-                if (fn) { fn.readOnly = true; fn.classList.add("autofill-locked"); }
-                if (ln) { ln.readOnly = true; ln.classList.add("autofill-locked"); }
+            function isTemporaryEmail(email, mobile) {
+                if (!email || !mobile) return false;
+                return email.trim().toLowerCase() === `${mobile.trim()}@gmail.com`;
             }
 
-            // Unlocks name fields (called when user manually edits email/mobile)
-            function unlockNameFields() {
+            // Locks customer fields after auto-fill (prevents customer mismatch)
+            function lockCustomerFields(isTempEmail = false) {
                 const fn = document.getElementById("f-name");
                 const ln = document.getElementById("l-name");
-                if (fn) { fn.readOnly = false; fn.classList.remove("autofill-locked"); }
-                if (ln) { ln.readOnly = false; ln.classList.remove("autofill-locked"); }
+                const em = document.getElementById("email");
+                if (fn) { fn.readOnly = true; fn.classList.add("autofill-locked"); fn.style.backgroundColor = '#e9ecef'; fn.style.opacity = '0.7'; fn.style.cursor = 'not-allowed'; }
+                if (ln) { ln.readOnly = true; ln.classList.add("autofill-locked"); ln.style.backgroundColor = '#e9ecef'; ln.style.opacity = '0.7'; ln.style.cursor = 'not-allowed'; }
+                if (em) {
+                    if (isTempEmail) {
+                        em.readOnly = false; em.classList.remove("autofill-locked"); em.style.backgroundColor = ''; em.style.opacity = ''; em.style.cursor = '';
+                    } else {
+                        em.readOnly = true; em.classList.add("autofill-locked"); em.style.backgroundColor = '#e9ecef'; em.style.opacity = '0.7'; em.style.cursor = 'not-allowed';
+                    }
+                }
             }
 
-            // Fetch customer by ID and populate name fields
+            // Unlocks customer fields (called when user manually edits email/mobile)
+            function unlockCustomerFields() {
+                const fn = document.getElementById("f-name");
+                const ln = document.getElementById("l-name");
+                const em = document.getElementById("email");
+                if (fn) { fn.readOnly = false; fn.classList.remove("autofill-locked"); fn.style.backgroundColor = ''; fn.style.opacity = ''; fn.style.cursor = ''; }
+                if (ln) { ln.readOnly = false; ln.classList.remove("autofill-locked"); ln.style.backgroundColor = ''; ln.style.opacity = ''; ln.style.cursor = ''; }
+                if (em) { em.readOnly = false; em.classList.remove("autofill-locked"); em.style.backgroundColor = ''; em.style.opacity = ''; em.style.cursor = ''; }
+            }
+
+            // Fetch customer by ID and populate fields
             async function fetchAndPopulateCustomer(customerId) {
                 try {
                     const data = await fetchJson(`${API_URL}?gofor=customersget&customer_id=${encodeURIComponent(customerId)}`);
@@ -1008,10 +1030,24 @@ include __DIR__ . '/../config.php';
 
                         if (fn) fn.value = data.first_name || data.fname || "";
                         if (ln) ln.value = data.last_name || data.lname || "";
-                        if (em && !em.value) em.value = data.email || "";
+                        
+                        const fetchedEmail = data.email || "";
+                        const currentMobile = (mo ? mo.value.trim() : "") || (data.mobilenumber || data.phone || "");
+
+                        const isTemp = isTemporaryEmail(fetchedEmail, currentMobile);
+
+                        // If backend returns an official email (not temp), autofill
+                        if (fetchedEmail && !isTemp) {
+                            if (em) em.value = fetchedEmail;
+                        } else {
+                            // If backend email is temporary, only autofill if empty
+                            if (em && !em.value) em.value = fetchedEmail;
+                        }
+
+                        lockCustomerFields(isTemp);
+
                         if (mo && !mo.value) mo.value = data.mobilenumber || data.phone || "";
 
-                        lockNameFields();
                         fetchedCustomerId = customerId;
                     }
                 } catch (err) {
@@ -1093,31 +1129,35 @@ include __DIR__ . '/../config.php';
             }
 
             emailInput.addEventListener("blur", function () {
-                const val = emailInput.value.trim();
-                if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-                    triggerAutoFill("email", val);
+                const emailVal = emailInput.value.trim();
+                const mobileVal = mobileInput.value.trim();
+                if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal) && !isTemporaryEmail(emailVal, mobileVal)) {
+                    triggerAutoFill("email", emailVal);
                 }
             });
 
             mobileInput.addEventListener("blur", function () {
-                const val = mobileInput.value.trim();
-                if (/^\d{10}$/.test(val)) {
-                    triggerAutoFill("mobile", val);
+                const mobileVal = mobileInput.value.trim();
+                const emailVal = emailInput.value.trim();
+                if (/^\d{10}$/.test(mobileVal)) {
+                    if (emailVal === "" || isTemporaryEmail(emailVal, mobileVal)) {
+                        triggerAutoFill("mobile", mobileVal);
+                    }
                 }
             });
 
             // Reset fetchedCustomerId when email or mobile changes
             emailInput.addEventListener("change", function () {
                 fetchedCustomerId = null;
-                unlockNameFields();
+                unlockCustomerFields();
             });
             mobileInput.addEventListener("change", function () {
                 fetchedCustomerId = null;
-                unlockNameFields();
+                unlockCustomerFields();
             });
 
             // Watch address fields – reset selectedAddressId if user edits
-            ["door-no", "street", "city", "pincode"].forEach(fieldId => {
+            ["door-no", "street", "location", "city", "pincode"].forEach(fieldId => {
                 const el = document.getElementById(fieldId);
                 if (el) {
                     el.addEventListener("input", function () {
@@ -1157,9 +1197,126 @@ include __DIR__ . '/../config.php';
                 return order.order_id || order.orderid || order.id || (order.data && (order.data.order_id || order.data.id || order.data.orderid));
             };
 
+            function validateCheckoutForm() {
+                // Helper to set error
+                function setError(el, msg) {
+                    if (el) {
+                        el.style.border = "2px solid #dc3545"; // Red border
+                        el.focus();
+                    }
+                    alert(msg);
+                    return false;
+                }
+
+                // Helper to clear errors
+                function clearError(el) {
+                    if (el) el.style.border = "";
+                }
+
+                const mobileInput = document.getElementById("phone");
+                const emailInput = document.getElementById("email");
+                const fnameInput = document.getElementById("f-name");
+                const lnameInput = document.getElementById("l-name");
+                const doorInput = document.getElementById("door-no");
+                const streetInput = document.getElementById("street");
+                const locationInput = document.getElementById("location");
+                const cityInput = document.getElementById("city");
+                const stateSelect = document.getElementById("state");
+                const pincodeInput = document.getElementById("pincode");
+
+                // Clear all previous errors
+                [mobileInput, emailInput, fnameInput, lnameInput, doorInput, streetInput, locationInput, cityInput, stateSelect, pincodeInput].forEach(clearError);
+
+                // 1. Mobile validation (exactly 10 digits, starts with 6,7,8,9)
+                const mobileVal = mobileInput ? mobileInput.value.trim() : "";
+                if (!/^[6-9]\d{9}$/.test(mobileVal)) {
+                    return setError(mobileInput, "Please enter a valid 10 digit Indian mobile number.");
+                }
+
+                // 2. Email validation (Optional but must be valid if entered)
+                const emailVal = emailInput ? emailInput.value.trim() : "";
+                if (emailVal !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+                    return setError(emailInput, "Please enter a valid email address.");
+                }
+
+                // 3. First Name (min 2, alphabets + spaces)
+                const fnameVal = fnameInput ? fnameInput.value.trim() : "";
+                if (!/^[a-zA-Z\s]{2,}$/.test(fnameVal)) {
+                    return setError(fnameInput, "Please enter your first name.");
+                }
+
+                // 4. Last Name (min 1, alphabets + spaces)
+                const lnameVal = lnameInput ? lnameInput.value.trim() : "";
+                if (!/^[a-zA-Z\s]{1,}$/.test(lnameVal)) {
+                    return setError(lnameInput, "Please enter your last name.");
+                }
+
+                // 5. Door Number
+                const doorVal = doorInput ? doorInput.value.trim() : "";
+                if (doorVal === "") {
+                    return setError(doorInput, "Please enter your door number.");
+                }
+
+                // 6. Street
+                const streetVal = streetInput ? streetInput.value.trim() : "";
+                if (streetVal.length < 3) {
+                    return setError(streetInput, "Please enter your street name (minimum 3 characters).");
+                }
+
+                // 6.5 Location
+                const locationVal = locationInput ? locationInput.value.trim() : "";
+                if (locationVal.length < 3) {
+                    return setError(locationInput, "Please enter your location (minimum 3 characters).");
+                }
+
+                // 7. City
+                const cityVal = cityInput ? cityInput.value.trim() : "";
+                if (!/^[a-zA-Z\s]+$/.test(cityVal)) {
+                    return setError(cityInput, "Please enter a valid city name (alphabets only).");
+                }
+
+                // 8. State
+                const stateVal = stateSelect ? stateSelect.value.trim() : "";
+                if (stateVal === "") {
+                    return setError(stateSelect, "Please select your state.");
+                }
+
+                // 9. Pincode
+                const pincodeVal = pincodeInput ? pincodeInput.value.trim() : "";
+                if (!/^\d{6}$/.test(pincodeVal)) {
+                    return setError(pincodeInput, "Please enter a valid 6 digit pincode.");
+                }
+
+                // 10. Payment Method
+                const activePaymentOption = document.querySelector('.payment-option.active');
+                if (!activePaymentOption) {
+                    alert("Please select a payment method.");
+                    return false;
+                }
+                const paymentMethod = activePaymentOption.getAttribute('data-method');
+                if (paymentMethod !== "online" && paymentMethod !== "cod") {
+                    alert("Invalid payment method selected.");
+                    return false;
+                }
+
+                // 11. QTY Validation
+                const currentQty = parseInt(qty) || 1;
+                if (currentQty < 1 || currentQty > 10) {
+                    alert("Quantity must be between 1 and 10.");
+                    return false;
+                }
+
+                return true;
+            }
+
             document.getElementById("cmd-place-order").addEventListener("click", async function (e) {
                 e.preventDefault();
                 const btn = this;
+
+                // Run robust validation before processing
+                if (!validateCheckoutForm()) {
+                    return;
+                }
 
                 // Step 1: Prevent duplicate submission
                 if (btn.dataset.processing === 'true') return;
@@ -1185,26 +1342,10 @@ include __DIR__ . '/../config.php';
                     const lname = document.getElementById("l-name")?.value.trim() || "";
                     const door = document.getElementById("door-no")?.value.trim() || "";
                     const street = document.getElementById("street")?.value.trim() || "";
+                    const location = document.getElementById("location")?.value.trim() || "";
                     const city = document.getElementById("city")?.value.trim() || "";
                     const state = document.getElementById("state")?.value.trim() || "";
                     const pincode = document.getElementById("pincode")?.value.trim() || "";
-
-                    // Validation rules
-                    if (!mobile || mobile.length !== 10) {
-                        throw new UserError("Please enter a valid 10-digit mobile number.");
-                    }
-
-                    if (!fname) {
-                        throw new UserError("Please enter your first name.");
-                    }
-
-                    if (!lname) {
-                        throw new UserError("Please enter your last name.");
-                    }
-
-                    if (!door || !street || !city || !state || !pincode) {
-                        throw new UserError("Please fill all required address fields.");
-                    }
 
                     const activePaymentOption = document.querySelector('.payment-option.active');
                     const paymentMethod = activePaymentOption ? activePaymentOption.getAttribute('data-method') : 'cod';
@@ -1292,6 +1433,7 @@ include __DIR__ . '/../config.php';
                             body: JSON.stringify({
                                 doorno: door,
                                 street,
+                                location,
                                 city,
                                 state,
                                 pincode,
