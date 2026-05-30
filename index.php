@@ -3,7 +3,27 @@
  * Main Landing Page - Psoriasis Combo
  * Refactored modular layout importing partial views from includes/.
  */
-require_once dirname(__DIR__) . '/config.php';
+// Defensive dynamic config locator
+$config_found = false;
+$search_paths = [
+    __DIR__ . '/../config.php',
+    __DIR__ . '/../../config.php',
+    __DIR__ . '/../../../config.php',
+    __DIR__ . '/config.php'
+];
+
+foreach ($search_paths as $path) {
+    if (file_exists($path)) {
+        require_once $path;
+        $config_found = true;
+        break;
+    }
+}
+
+// Fallback configuration if no config file is found or if API_URL isn't defined
+if (!defined('API_URL')) {
+    define('API_URL', 'https://almaherbal.top/Staging-App/api.php');
+}
 
 // Define asset paths for this module
 if (!defined('BASE_URL')) {
