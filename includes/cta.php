@@ -6,7 +6,7 @@
 ?>
 <!-- ================= CTA Section ============== -->
 <section class="py-12">
-  <div class="max-w-5xl mx-auto px-6">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 items-center bg-white rounded-3xl shadow-xl p-10 md:p-16 border border-greentext/50">
         <div class="space-y-6">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-800 leading-tight">
@@ -24,8 +24,8 @@
             Chat on WhatsApp
           </a>
         </div>
-        <div>
-          <img src="assets/doctor-consulting-img.jpeg" alt="doctor-consult-img" class="rounded-lg hover:scale-105 hoverEffect shadow-xl">
+        <div class="flex justify-center">
+          <img src="assets/doctor-consulting-img.jpeg" alt="doctor-consult-img" class="w-full rounded-lg hover:scale-105 hoverEffect shadow-xl">
         </div>
     </div>
   </div>

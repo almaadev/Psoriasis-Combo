@@ -21,9 +21,9 @@
         <div class="relative w-full h-full">
           <img src="assets/benefits-image/benefits-img-3.jpg" class="w-full h-full object-cover" alt="Helps manage itching & dryness">
           <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
-            <div class="py-5 px-3 text-center space-y-5">
-              <h2 class="text-2xl text-white font-semibold group-hover:text-black transition duration-300">Helps manage itching & dryness</h2>
-              <p class="text-white leading-relaxed text-base group-hover:text-black transition duration-300">
+            <div class="py-5 px-3 text-center space-y-5 group-hover:opacity-0 transition duration-300">
+              <h2 class="text-2xl text-white font-semibold">Helps manage itching & dryness</h2>
+              <p class="text-white leading-relaxed text-base">
                 Supports reduction of visible flaking, itching, and redness for improved skin comfort.
               </p>
             </div>
@@ -35,9 +35,9 @@
         <div class="relative w-full h-full">
           <img src="assets/benefits-image/benefit-img-4.jpg" class="w-full h-full object-cover" alt="Supports healthy skin naturally">
           <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
-            <div class="py-5 px-2 text-center space-y-5">
-              <h2 class="text-2xl text-white font-semibold group-hover:text-black transition duration-300">Supports healthy skin naturally</h2>
-              <p class="text-white leading-relaxed text-base group-hover:text-black transition duration-300">
+            <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
+              <h2 class="text-2xl text-white font-semibold">Supports healthy skin naturally</h2>
+              <p class="text-white leading-relaxed text-base">
                  Traditional herbs known to help maintain internal balance and support healthy skin function.
               </p>
             </div>
@@ -49,9 +49,9 @@
         <div class="relative w-full h-full">
           <img src="assets/benefits-image/benefit-img-2.jpg" class="w-full h-full object-cover" alt="Supports skin comfort & hydration">
           <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
-            <div class="py-5 px-2 text-center space-y-5">
-              <h2 class="text-2xl text-white font-semibold group-hover:text-black transition duration-300">Supports skin comfort & hydration</h2>
-              <p class="text-white leading-relaxed text-base group-hover:text-black transition duration-300">
+            <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
+              <h2 class="text-2xl text-white font-semibold">Supports skin comfort & hydration</h2>
+              <p class="text-white leading-relaxed text-base">
                 Helps maintain the skin’s natural renewal process and supports smoother-looking skin.
               </p>
             </div>
@@ -63,9 +63,9 @@
         <div class="relative w-full h-full">
           <img src="assets/benefits-image/benefit-img-5.jpg" class="w-full h-full object-cover" alt="Improves Skin Texture">
           <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
-            <div class="py-5 px-2 text-center space-y-5">
-              <h2 class="text-2xl text-white font-semibold group-hover:text-black transition duration-300">Improves Skin Texture</h2>
-              <p class="text-white leading-relaxed text-base group-hover:text-black transition duration-300">
+            <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
+              <h2 class="text-2xl text-white font-semibold">Improves Skin Texture</h2>
+              <p class="text-white leading-relaxed text-base">
                 Supports healthier-looking skin by helping reduce roughness and irritation.
               </p>
             </div>
@@ -77,9 +77,9 @@
         <div class="relative w-full h-full">
           <img src="assets/benefits-image/benefit-img-1.jpeg" class="w-full h-full object-cover" alt="Long-Term Skin Care Support">
           <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
-            <div class="py-5 px-2 text-center space-y-5">
-              <h2 class="text-2xl text-white font-semibold group-hover:text-black transition duration-300">Long-Term Skin Care Support</h2>
-              <p class="text-white leading-relaxed text-base group-hover:text-black transition duration-300">
+            <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
+              <h2 class="text-2xl text-white font-semibold">Long-Term Skin Care Support</h2>
+              <p class="text-white leading-relaxed text-base">
                  Formulated for regular use to help maintain overall skin comfort and appearance.
               </p>
             </div>

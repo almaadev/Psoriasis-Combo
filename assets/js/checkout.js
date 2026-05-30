@@ -63,23 +63,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function initProduct() {
         try {
-            // Try to fetch from API first to get latest details
-            const productId = window.PRODUCT_ID || 96;
-            const response = await fetch(`${API_URL}?gofor=productdetail&product_id=${productId}`);
-            const data = await response.json();
+            // Check if product details are passed in the URL parameters first
+            const params = new URLSearchParams(window.location.search);
+            const urlProduct = params.get('product');
+            const urlPrice = parseFloat(params.get('price'));
 
-            if (data && data.product_details && data.product_details[0]) {
-                const product = data.product_details[0];
-                const attr = data.product_attributes ? data.product_attributes[0] : {};
-
-                landingProduct.id = product.product_id;
-                landingProduct.name = product.product_name;
-                landingProduct.price = parseFloat(attr.selling_price) || 2884.00;
-                landingProduct.unit = attr.prod_attri_id || "";
-
-                console.log("Product data fetched from API:", landingProduct);
+            if (urlProduct && !isNaN(urlPrice)) {
+                landingProduct.id = window.PRODUCT_ID || 96;
+                let decodedName = decodeURIComponent(urlProduct);
+                if (decodedName.toUpperCase() === 'PSORIATIC COMBO') {
+                    decodedName = 'Almaa Psoriasis Combo';
+                }
+                landingProduct.name = decodedName;
+                landingProduct.price = urlPrice;
+                landingProduct.unit = "";
+                console.log("Product data loaded from URL params:", landingProduct);
             } else {
-                throw new Error("Invalid API response");
+                // Try to fetch from API first to get latest details
+                const productId = window.PRODUCT_ID || 96;
+                const response = await fetch(`${API_URL}?gofor=productdetail&product_id=${productId}`);
+                const data = await response.json();
+
+                if (data && data.product_details && data.product_details[0]) {
+                    const product = data.product_details[0];
+                    const attr = data.product_attributes ? data.product_attributes[0] : {};
+
+                    landingProduct.id = product.product_id;
+                    landingProduct.name = product.product_name;
+                    landingProduct.price = parseFloat(attr.selling_price) || 2884.00;
+                    landingProduct.unit = attr.prod_attri_id || "";
+
+                    console.log("Product data fetched from API:", landingProduct);
+                } else {
+                    throw new Error("Invalid API response");
+                }
             }
         } catch (e) {
             console.error("Error fetching product from API, using local storage fallback:", e);
