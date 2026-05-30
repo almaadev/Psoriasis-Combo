@@ -3,6 +3,37 @@
  * Order Form Component
  * Renders the product gallery, lightbox zoom, pricing, pack options, and buy now triggers.
  */
+
+// Fetch product details from the API in PHP
+$product_id = $_SESSION['product_id'] ?? 96;
+$api_url = API_URL . "?gofor=productdetail&product_id=" . $product_id;
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $api_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+$response = curl_exec($ch);
+curl_close($ch);
+
+$product_price = 2884; // default fallback
+$product_old_price = 3845; // default fallback
+$product_name = "Almaa Psoriasis Combo"; // default fallback
+
+if ($response) {
+    $product_data = json_decode($response, true);
+    if (isset($product_data['product_details'][0])) {
+        $product_name = $product_data['product_details'][0]['product_name'];
+        $attr = $product_data['product_attributes'][0] ?? [];
+        $product_price = isset($attr['selling_price']) ? floatval($attr['selling_price']) : 2884;
+        $product_old_price = isset($attr['product_mrp']) ? floatval($attr['product_mrp']) : (isset($attr['mrp_price']) ? floatval($attr['mrp_price']) : 3845);
+    }
+}
+
+$discount_percentage = 25; // default fallback
+if ($product_old_price > 0 && $product_price > 0) {
+    $discount_percentage = round((($product_old_price - $product_price) / $product_old_price) * 100);
+}
 ?>
 <!-- ================= PRODUCT SECTION ================= -->
 <section id="product" class="product-section py-20">
@@ -54,7 +85,7 @@
             <!-- Title -->
             <div>
               <h1 class="text-2xl md:text-4xl font-bold text-gray-800">
-               Almaa Psoriasis Combo
+               <?php echo htmlspecialchars($product_name); ?>
               </h1>
               <!-- Rating -->
               <div class="flex items-center gap-3 mt-3">
@@ -63,7 +94,7 @@
                 </div>
                 <p class="text-gray-600 text-sm">4.8 (131 Reviews)</p>
                 <span class="bg-green-100 text-greentext text-xs font-semibold px-3 py-1 rounded-full">
-                  SAVE 25%
+                  SAVE <?php echo $discount_percentage; ?>%
                 </span>
               </div>
 
@@ -86,10 +117,10 @@ Herbal Support for Itching & Scaling  | Traditional Skin Wellness Approach  | Su
 
             <!-- Price -->
             <div class="flex items-center gap-4">
-              <p class="text-4xl font-bold text-greentext" id="mainPrice">₹2884</p>
-              <p class="text-gray-400 line-through text-lg" id="oldPrice">₹3845</p>
+              <p class="text-4xl font-bold text-greentext" id="mainPrice">₹<?php echo $product_price; ?></p>
+              <p class="text-gray-400 line-through text-lg" id="oldPrice">₹<?php echo $product_old_price; ?></p>
               <span class="bg-yellow-400 text-black text-sm font-semibold px-3 py-1 rounded-full">
-                25% OFF
+                <?php echo $discount_percentage; ?>% OFF
               </span>
             </div>
 
@@ -99,18 +130,18 @@ Herbal Support for Itching & Scaling  | Traditional Skin Wellness Approach  | Su
               <div class="grid grid-cols-2 gap-2">
 
                 <!-- Pack 1 -->
-                <button class="pack-btn border border-greentext text-white bg-greentext/80 hover:scale-105 text-center transition" data-pack="1" data-price="2884" data-old="3845">
+                <button class="pack-btn border border-greentext text-white bg-greentext/80 hover:scale-105 text-center transition" data-pack="1" data-price="<?php echo $product_price; ?>" data-old="<?php echo $product_old_price; ?>">
                   <p class="font-semibold text-lg">Pack of 1</p>
-                  <p class="font-bold text-xl">₹2884</p>
-                  <p class="text-gray-400 line-through text-sm">₹3845</p>
+                  <p class="font-bold text-xl">₹<?php echo $product_price; ?></p>
+                  <p class="text-gray-400 line-through text-sm">₹<?php echo $product_old_price; ?></p>
                 </button>
 
                 <!-- Pack 2 -->
                 <!--
-                <button class="pack-btn border border-greentext hover:scale-105 rounded-2xl text-center transition" data-pack="2" data-price="2884" data-old="7690">
+                <button class="pack-btn border border-greentext hover:scale-105 rounded-2xl text-center transition" data-pack="2" data-price="<?php echo $product_price; ?>" data-old="<?php echo ($product_old_price * 2); ?>">
                   <p class="font-semibold text-lg">Pack of 2</p>
-                  <p class="font-bold text-xl">₹5768</p>
-                  <p class="text-gray-400 line-through text-sm">₹7690</p>
+                  <p class="font-bold text-xl">₹<?php echo ($product_price * 2); ?></p>
+                  <p class="text-gray-400 line-through text-sm">₹<?php echo ($product_old_price * 2); ?></p>
                 </button>
                 -->
 
