@@ -13,14 +13,17 @@
     <p class="text-gray-500 text-center">
       Gentle on the body. Powerful on psoriasis 🔥
     </p>
-  </div> 
+  </div>
   <div class="max-w-7xl mx-auto px-6">
     <div class="benefit-box">
       <!-- Card 1 -->
-      <div class="benefit-card-1 border rounded-xl overflow-hidden shadow-sm bg-white h-[560px] hover:scale-105 hover:shadow-xl hoverEffect group">
+      <div
+        class="benefit-card-1 border rounded-xl overflow-hidden shadow-sm bg-white h-[560px] hover:scale-105 hover:shadow-xl hoverEffect group">
         <div class="relative w-full h-full">
-          <img src="assets/benefits-image/benefits-img-3.jpg" class="w-full h-full object-cover" alt="Helps manage itching & dryness">
-          <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
+          <img src="assets/benefits-image/benefit-img-3.webp" class="w-full h-full object-cover"
+            alt="Helps manage itching & dryness">
+          <div
+            class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
             <div class="py-5 px-3 text-center space-y-5 group-hover:opacity-0 transition duration-300">
               <h2 class="text-2xl text-white font-semibold">Helps manage itching & dryness</h2>
               <p class="text-white leading-relaxed text-base">
@@ -31,24 +34,30 @@
         </div>
       </div>
       <!-- Card 2 -->
-      <div class="benefit-card-2 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
+      <div
+        class="benefit-card-2 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
         <div class="relative w-full h-full">
-          <img src="assets/benefits-image/benefit-img-4.jpg" class="w-full h-full object-cover" alt="Supports healthy skin naturally">
-          <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
+          <img src="assets/benefits-image/benefit-img-4.webp" class="w-full h-full object-cover"
+            alt="Supports healthy skin naturally">
+          <div
+            class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
             <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
               <h2 class="text-2xl text-white font-semibold">Supports healthy skin naturally</h2>
               <p class="text-white leading-relaxed text-base">
-                 Traditional herbs known to help maintain internal balance and support healthy skin function.
+                Traditional herbs known to help maintain internal balance and support healthy skin function.
               </p>
             </div>
           </div>
         </div>
       </div>
       <!-- Card 3 -->
-      <div class="benefit-card-3 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
+      <div
+        class="benefit-card-3 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
         <div class="relative w-full h-full">
-          <img src="assets/benefits-image/benefit-img-2.jpg" class="w-full h-full object-cover" alt="Supports skin comfort & hydration">
-          <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
+          <img src="assets/benefits-image/benefit-img-2.webp" class="w-full h-full object-cover"
+            alt="Supports skin comfort & hydration">
+          <div
+            class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
             <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
               <h2 class="text-2xl text-white font-semibold">Supports skin comfort & hydration</h2>
               <p class="text-white leading-relaxed text-base">
@@ -59,10 +68,13 @@
         </div>
       </div>
       <!-- Card 4 -->
-      <div class="benefit-card-4 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
+      <div
+        class="benefit-card-4 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
         <div class="relative w-full h-full">
-          <img src="assets/benefits-image/benefit-img-5.jpg" class="w-full h-full object-cover" alt="Improves Skin Texture">
-          <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
+          <img src="assets/benefits-image/benefit-img-5.webp" class="w-full h-full object-cover"
+            alt="Improves Skin Texture">
+          <div
+            class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
             <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
               <h2 class="text-2xl text-white font-semibold">Improves Skin Texture</h2>
               <p class="text-white leading-relaxed text-base">
@@ -70,17 +82,20 @@
               </p>
             </div>
           </div>
-        </div> 
+        </div>
       </div>
       <!-- Card 5 -->
-      <div class="benefit-card-5 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
+      <div
+        class="benefit-card-5 border rounded-xl overflow-hidden shadow-sm bg-white h-[270px] hover:scale-105 hover:shadow-xl hoverEffect group">
         <div class="relative w-full h-full">
-          <img src="assets/benefits-image/benefit-img-1.jpeg" class="w-full h-full object-cover" alt="Long-Term Skin Care Support">
-          <div class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
+          <img src="assets/benefits-image/benefit-img-1.webp" class="w-full h-full object-cover"
+            alt="Long-Term Skin Care Support">
+          <div
+            class="absolute inset-0 bg-black/40 flex justify-center items-center hover:bg-black/0 hoverEffect cursor-pointer transition duration-300">
             <div class="py-5 px-2 text-center space-y-5 group-hover:opacity-0 transition duration-300">
               <h2 class="text-2xl text-white font-semibold">Long-Term Skin Care Support</h2>
               <p class="text-white leading-relaxed text-base">
-                 Formulated for regular use to help maintain overall skin comfort and appearance.
+                Formulated for regular use to help maintain overall skin comfort and appearance.
               </p>
             </div>
           </div>

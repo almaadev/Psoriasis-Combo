@@ -18,7 +18,7 @@
     <!-- Card 1 -->
     <div class="use-card">
       <div class="card-image">
-        <img src="assets/Product-image/Sivanar Vembu Chooranam.jpeg" alt="Sivanaravembu Chooranam">
+        <img src="assets/Product-image/Sivanar Vembu Chooranam.webp" alt="Sivanaravembu Chooranam">
       </div>
       <div class="card-content">
         <h3 class="card-title">Sivanaravembu Chooranam</h3>
@@ -37,7 +37,7 @@
     <!-- Card 2 -->
     <div class="use-card">
       <div class="card-image">
-        <img src="assets/Product-image/Sivanar Vembu Kuzhi Thylam.jpeg" alt="Sivanar Vembu Kuzhi Thayilam">
+        <img src="assets/Product-image/Sivanar Vembu Kuzhi Thylam.webp" alt="Sivanar Vembu Kuzhi Thayilam">
       </div>
       <div class="card-content">
         <h3 class="card-title">Sivanar Vembu Kuzhi Thayilam</h3>
@@ -59,7 +59,7 @@
     <!-- Card 3 -->
     <div class="use-card">
       <div class="card-image">
-        <img src="assets/Product-image/Psora 111 Oil.jpeg" alt="Psora 111 Oil">
+        <img src="assets/Product-image/Psora 111 Oil.webp" alt="Psora 111 Oil">
       </div>
       <div class="card-content">
         <h3 class="card-title">Psora 111 Oil</h3>

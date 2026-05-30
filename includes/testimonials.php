@@ -31,10 +31,10 @@
           </div>
           <p>
             “ALMAA PRODUCTS ARE GOOD IN QUALITY. AFFORDABLE PRICE.
-             THEY ARE TAKING CARE ABOUT THE PATIENTS. ”
+            THEY ARE TAKING CARE ABOUT THE PATIENTS. ”
           </p>
           <div class="profile">
-            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-male.jpg" alt="Rajasekaran Sangeetha" /> -->
+            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-male.webp" alt="Rajasekaran Sangeetha" /> -->
             <div class="flex gap-1 items-center">
               <h4>Rajasekaran Sangeetha</h4>
               <!-- <img src="<?= IMAGE_URL ?>checklist.png" alt="verified" class="w-5 h-5"> -->
@@ -49,10 +49,10 @@
           </div>
           <p>
             “We visited Almaa Siddha Care Hospital for fertility treatment
-             and had a positive outcome. The treatment was excellent”
+            and had a positive outcome. The treatment was excellent”
           </p>
           <div class="profile">
-            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.jpg" alt="Varshaa Pandiyan" /> -->
+            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.webp" alt="Varshaa Pandiyan" /> -->
             <div class="flex gap-1 items-center">
               <h4>Varshaa Pandiyan</h4>
               <!-- <img src="<?= IMAGE_URL ?>checklist.png" alt="verified" class="w-5 h-5"> -->
@@ -67,10 +67,10 @@
           </div>
           <p>
             “We visited Almaa sidha Erode we get treated for diabetic and cholesterol.
-             Medicines worked very good and everything came normal. ”
+            Medicines worked very good and everything came normal. ”
           </p>
           <div class="profile">
-            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.jpg" alt="Zulfiya Fargana" /> -->
+            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.webp" alt="Zulfiya Fargana" /> -->
             <div class="flex gap-1 items-center">
               <h4>Zulfiya Fargana</h4>
               <!-- <img src="<?= IMAGE_URL ?>checklist.png" alt="verified" class="w-5 h-5"> -->
@@ -84,10 +84,11 @@
             <div class="stars">★★★★★</div>
           </div>
           <p>
-            “I'm using almaa products and medicines for more than 5 years. Very good results and very effective medicines. ”
+            “I'm using almaa products and medicines for more than 5 years. Very good results and very effective
+            medicines. ”
           </p>
           <div class="profile">
-            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.jpg" alt="Aishwarya Jayasekar" /> -->
+            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.webp" alt="Aishwarya Jayasekar" /> -->
             <div class="flex gap-1 items-center">
               <h4>Aishwarya Jayasekar</h4>
               <!-- <img src="<?= IMAGE_URL ?>checklist.png" alt="verified" class="w-5 h-5"> -->
@@ -102,10 +103,10 @@
           </div>
           <p>
             “I am using Almaa Health Products for almost 3 years now and it helped me a lot.
-             I had used the products to cure seasonal flus”
+            I had used the products to cure seasonal flus”
           </p>
           <div class="profile">
-            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.jpg" alt="janani jayapandian" /> -->
+            <!-- <img class="image" src="<?= IMAGE_URL ?>placeholder-image-female.webp" alt="janani jayapandian" /> -->
             <div class="flex gap-1 items-center">
               <h4>janani jayapandian</h4>
               <!-- <img src="<?= IMAGE_URL ?>checklist.png" alt="verified" class="w-5 h-5"> -->

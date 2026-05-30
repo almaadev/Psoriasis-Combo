@@ -10137,13 +10137,13 @@ blockquote cite {
 /* Mobile Banner Adjustments */
 @media (max-width: 767.98px) {
   .slide-bg-1 {
-    background-image: url("../img/almaapics/mobile.jpeg") !important;
+    background-image: url("../img/almaapics/mobile.webp") !important;
     background-position: center center !important;
     background-size: cover !important;
   }
 
   .slide-bg-2 {
-    background-image: url("../img/almaapics/mobile1.jpeg") !important;
+    background-image: url("../img/almaapics/mobile1.webp") !important;
     background-position: center center !important;
     background-size: cover !important;
   }

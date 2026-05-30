@@ -15,17 +15,17 @@
     <div class="grid md:grid-cols-2 gap-16 items-center">
       <!-- IMAGE -->
       <div class="reveal flex justify-center">
-        <img src="assets/Product-image/Psoriasis-Combo.jpg"
-          alt="Psoriatic Care Combo"
-          class="rounded-2xl shadow-xl w-full max-w-2xl hover:scale-105 transition duration-500 ease-in-out"/>
+        <img src="assets/Product-image/Psoriasis-Combo2.webp" alt="Psoriatic Care Combo"
+          class="rounded-2xl shadow-xl w-full max-w-2xl hover:scale-105 transition duration-500 ease-in-out" />
       </div>
 
       <!-- CONTENT -->
       <div class="space-y-8 reveal">
         <div>
           <p class="text-gray-600 leading-relaxed mb-4 text-justify md:text-left">
-             <strong>Why Does Psoriasis Keep Coming Back?</strong><br>
-Psoriasis is not always just a surface-level skin concern. For many individuals, factors like stress, immune imbalance, food habits, and long-term inflammation may contribute to recurring flare-ups.
+            <strong>Why Does Psoriasis Keep Coming Back?</strong><br>
+            Psoriasis is not always just a surface-level skin concern. For many individuals, factors like stress, immune
+            imbalance, food habits, and long-term inflammation may contribute to recurring flare-ups.
 
           </p>
           <p class="text-gray-500 leading-relaxed text-justify md:text-left">
