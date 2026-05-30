@@ -5,8 +5,8 @@
  */
 ?>
 <!-- ================= HOW TO USE ================= -->
-<section id="how-to-use" class="py-32 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 text-center mb-20">
+<section id="how-to-use" class="py-16 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 text-center mb-10">
     <h2 class="text-4xl md:text-5xl font-bold mb-6">
       How To Use Our <span class="text-greentext">Psoriatic Combo</span>
     </h2>

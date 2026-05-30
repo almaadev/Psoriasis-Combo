@@ -5,11 +5,11 @@
  */
 ?>
 <!-- ================= Testimonial ================= -->
-<section id="testimonial" class="py-40 overflow-hidden">
+<section id="testimonial" class="py-20 overflow-hidden">
   <div class="max-w-6xl mx-auto px-6">
 
     <!-- Heading -->
-    <div class="text-center mb-20">
+    <div class="text-center mb-10">
       <h2 class="text-4xl md:text-5xl font-bold text-black mb-4">
         What People Say
       </h2>

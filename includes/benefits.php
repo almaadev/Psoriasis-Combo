@@ -5,8 +5,8 @@
  */
 ?>
 <!-- ================= BENEFITS ================= -->
-<section id="benefits" class="py-28">
-  <div class="max-w-7xl mx-auto px-6 text-center mb-20 space-y-5">
+<section id="benefits" class="py-16">
+  <div class="max-w-7xl mx-auto px-6 text-center mb-10 space-y-5">
     <h2 class="text-3xl md:text-5xl font-bold head-prime text-center">
       Psoriatic Combo <span class="text-greentext">key Benefits</span>
     </h2>

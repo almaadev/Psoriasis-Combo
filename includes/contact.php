@@ -5,9 +5,9 @@
  */
 ?>
 <!-- ================= Contact Section ===============-->
-<section id="contact" class="py-24">
+<section id="contact" class="py-16">
   <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col items-center mb-4 md:mb-20">
+      <div class="flex flex-col items-center mb-4 md:mb-10">
         <h2 class="text-3xl md:text-5xl font-bold font-heading text-center">Contact Us</h2>
         <p class="mt-5 md:mt-2 text-sm md:text-base text-gray-600 mb-3 font-semibold text-center">We&#8217;re here to help your healing journey 🌿</p>
       </div>

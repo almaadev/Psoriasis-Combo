@@ -5,8 +5,8 @@
  */
 ?>
 <!-- ================= INGREDIENTS ================= -->
-<section id="ingredients" class="relative overflow-hidden py-28">
-  <div class="max-w-7xl mx-auto px-6 text-center mb-20 space-y-5">
+<section id="ingredients" class="relative overflow-hidden py-16">
+  <div class="max-w-7xl mx-auto px-6 text-center mb-10 space-y-5">
     <h2 class="text-3xl md:text-5xl font-bold head-prime text-center">
       Our <span class="text-greentext">Natural Ingredients</span>
     </h2>
@@ -15,7 +15,7 @@
   <div class="max-w-7xl mx-auto px-6">
     <!-- Slider -->
     <div class="relative">
-      <div id="ingredientTrack" class="flex gap-6 snap-x snap-mandatory py-10">
+      <div id="ingredientTrack" class="flex gap-6 snap-x snap-mandatory py-4">
         <div class="ingredient-slide-card snap-start">
           <img src="assets/ingredints/ingredient.jpeg" alt="Sivanar vembu">
           <h3>Sivanar vembu</h3>
