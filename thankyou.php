@@ -1,184 +1,182 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+/**
+ * Order Confirmation Screen
+ * Refactored modular layout importing partial views from includes/.
+ */
+require_once __DIR__ . '/includes/config.php';
+
+$order_id = $_SESSION['order_id'] ?? null;
+
+if (!$order_id) {
+  header("Location: checkout.php");
+  exit;
 }
+
+/* ==============================
+   FETCH ORDER DETAILS USING CURL
+============================== */
+
+$fullUrl = API_URL . "?gofor=getorder&order_id=" . urlencode($order_id);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $fullUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // avoid SSL issue (if any)
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+  echo "Curl Error: " . curl_error($ch);
+  curl_close($ch);
+  exit;
+}
+
+curl_close($ch);
+
+if (!$response) {
+  echo "Empty response from API";
+  exit;
+}
+
+$orderDetails = json_decode($response, true);
+
+if (!$orderDetails) {
+  echo "Invalid JSON from API";
+  exit;
+}
+
+/* ==============================
+   CHECK RESPONSE STRUCTURE
+============================== */
+
+if (isset($orderDetails['Order List'])) {
+  $order = $orderDetails['Order List'];
+  $orderDetail = $orderDetails['Order Detail'];
+  $productDetails = $orderDetails['Product Detail'];
+  $customerDetails = $orderDetails['Customer Detail'];
+  $addressDetails = $orderDetails['Address Detail'];
+} else {
+  echo "Failed to fetch order details.";
+  exit;
+}
+
+$isNewCustomer = isset($_GET['new']) && $_GET['new'] == '1';
+
+// Build Invoice URL parameters dynamically from fetched database data
+$invoiceParams = [];
+if (isset($customerDetails)) {
+  $fullName = trim(($customerDetails['first_name'] ?? '') . ' ' . ($customerDetails['last_name'] ?? ''));
+  if (!$fullName) {
+    $fullName = trim(($customerDetails['fname'] ?? '') . ' ' . ($customerDetails['lname'] ?? ''));
+  }
+  $invoiceParams['name'] = $fullName;
+  $invoiceParams['email'] = $customerDetails['email'] ?? '';
+  $invoiceParams['phone'] = $customerDetails['mobilenumber'] ?? $customerDetails['phone'] ?? '';
+}
+if (isset($addressDetails)) {
+  $invoiceParams['address'] = trim(
+    ($addressDetails['doorno'] ?? '') . ', ' .
+    ($addressDetails['street'] ?? '') . ', ' .
+    ($addressDetails['city'] ?? '') . ', ' .
+    ($addressDetails['state'] ?? '') . ' - ' .
+    ($addressDetails['pincode'] ?? '')
+  );
+}
+if (isset($productDetails) && is_array($productDetails) && isset($productDetails[0])) {
+  $invoiceParams['product'] = $productDetails[0]['product_name'] ?? 'Psoriasis Care Combo';
+  $invoiceParams['qty'] = $productDetails[0]['quantity'] ?? 1;
+  $invoiceParams['price'] = $productDetails[0]['amount'] ?? '';
+}
+if (isset($orderDetail)) {
+  $invoiceParams['shipping'] = $orderDetail['delivery_charge'] ?? 50;
+  $invoiceParams['payment'] = $orderDetail['payment_mode'] ?? 'COD';
+}
+
+$invoiceUrl = "./invoice.php?" . http_build_query($invoiceParams);
+
+// Set up page scripts
+$pageScripts = [
+  ASSET_URL . 'js/thankyou.js'
+];
+
+$metaTitle = "Order Confirmed | Almaa Herbal";
+$metaDescription = "Your order has been placed successfully. Thank you for choosing Almaa Herbal Nature.";
+
+require_once __DIR__ . '/includes/head.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmed | Almaa Herbal</title>
-<link rel="shortcut icon" href="./assets/Almaa Herbal Logo_Without TM.png" type="image/x-icon">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            greentext: "#176803",
-            primary: "#22c55e",
-            soft: "#f0fdf4",
-            button:"#176803",
-            textprimary: "#1f2937",
-            bgone: "#f5f5f5",
-            bgtwo: "#ffffff"
-          }
-        }
-      }
-    }
-  </script>
-<style>
 
-/* Pop animation */
-@keyframes popIn {
-  0% { transform: scale(0.6); opacity: 0; }
-  60% { transform: scale(1.1); opacity: 1; }
-  100% { transform: scale(1); }
-}
+<body class="bg-greentext/10 overflow-y-auto relative py-10 min-h-screen flex items-center justify-center">
 
-.pop {
-  animation: popIn 0.6s ease-out forwards;
-}
+  <!-- Falling Leaves Animation Container -->
+  <div id="leafContainer"></div>
 
-/* Falling leaves */
-@keyframes fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
-}
+  <!-- Reusable Header (Optional - original doesn't show full header but let's keep it focus-centered) -->
+  <div class="relative z-10 flex items-center justify-center w-full px-6">
+    <div class="bg-white rounded-3xl shadow-2xl p-10 text-center max-w-lg w-full pop my-8">
 
-.leaf {
-  position: fixed;
-  top: -10vh;
-  font-size: 24px;
-  animation: fall linear infinite;
-  z-index: 0;
-}
+      <!-- Success Graphic Icon -->
+      <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center text-4xl text-green-600">
+        ✔
+      </div>
 
-</style>
-</head>
+      <h1 class="text-3xl font-bold text-gray-800 mt-6">
+        Thank You for Your Order!
+      </h1>
 
-<body class="bg-greentext/10 overflow-hidden relative">
+      <?php if (isset($order['order_id'])): ?>
+        <p class="text-base font-bold mt-2" style="color: #2a6f44;">
+          Order ID: #<?php echo htmlspecialchars($order['order_id']); ?>
+        </p>
+      <?php endif; ?>
 
-<!-- Falling Leaves -->
-<div id="leafContainer"></div>
+      <p class="text-muted small mt-3" style="color: #6c757d; font-size: 0.875rem;">We've received your order and will
+        begin processing it right away. You will receive a confirmation shortly.</p>
 
-<!-- Main Content -->
-<div class="relative z-10 flex items-center justify-center min-h-screen px-6">
+      <div class="mt-4 p-4 rounded-2xl text-left" style="background-color: #f0fdf4; border: 1px solid #dcfce7;">
+        <p class="mb-2" style="font-weight: 600; color: #166534;">Track Your Order History</p>
+        <p class="text-muted small mb-0" style="color: #6c757d; font-size: 0.875rem; line-height: 1.6;">
+          To view your order history, please login to <a href="https://almaaherbal.com/" target="_blank"
+            style="color: #2a6f44; font-weight: 600; text-decoration: underline;">almaaherbal.com</a><br><br>
+          <?php if ($isNewCustomer): ?>
+            <strong>Username:</strong> Your mobile number<br>
+            <strong>Password:</strong> almaa + last 4 digits of your mobile number<br>
+          <?php else: ?>
+            Already an existing customer? Login with the email and password you entered at the time of signup. <br><br>
+            If you didn't signup earlier, use your mobile number and default password: <strong>almaa + last 4 digits of
+              your mobile number</strong>.
+          <?php endif; ?>
 
-  <div class="bg-white rounded-3xl shadow-2xl p-10 text-center max-w-lg w-full pop">
+          <?php
+          $emailAddress = $customerDetails['email'] ?? '';
+          $mobileNumber = $customerDetails['mobilenumber'] ?? $customerDetails['phone'] ?? '';
+          if ($emailAddress && $mobileNumber && $emailAddress === ($mobileNumber . '@gmail.com')):
+          ?>
+            <br><br>
+            <strong>Note:</strong> Since you did not provide an email, your registered email is set as <strong><?php echo htmlspecialchars($emailAddress); ?></strong>. You can update this to your personal email if you wish.
+          <?php endif; ?>
 
-    <!-- Success Icon -->
-    <div class="w-20 h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center text-4xl text-green-600">
-      ✔
-    </div>
+          <span class="mt-3 d-block" style="font-style: italic;">Happy Shopping!</span>
+        </p>
+      </div>
 
-    <h1 class="text-3xl font-bold text-gray-800 mt-6">
-      Thank You for Your Order!
-    </h1>
-
-    <p class="text-gray-600 mt-3">
-      Your order has been placed successfully.  
-      Our team will contact you shortly for confirmation.
-    </p>
-
-    <div class="mt-6 bg-greentext/10 p-4 rounded-xl">
-      <p class="text-sm font-medium text-gray-700">
-        💚 We're excited to be part of your healing journey.
-      </p>
-    </div>
-
-    <!-- Buttons -->
-    <div class="mt-8 grid md:grid-cols-2 gap-5 p-2">
-
-      <a href="./invoice.php" class=" bg-greentext text-white py-3 px-5 rounded-xl font-semibold hover:scale-105 transition">
-        Download Invoice
-      </a>
-
-      <a href="index.php" class="border border-greentext text-greentext py-3 px-5 rounded-xl font-semibold hover:bg-greentext hover:text-white transition">
-        Continue Shopping
-      </a>
+      <!-- Action Buttons -->
+      <div class="mt-8 grid md:grid-cols-2 gap-5 p-2">
+        <a href="<?php echo htmlspecialchars($invoiceUrl); ?>"
+          class="bg-greentext text-white py-3 px-5 rounded-xl font-semibold hover:scale-105 transition block">
+          Download Invoice
+        </a>
+        <a href="index.php"
+          class="border border-greentext text-greentext py-3 px-5 rounded-xl font-semibold hover:bg-greentext hover:text-white transition block">
+          Continue Shopping
+        </a>
+      </div>
 
     </div>
-
   </div>
-</div>
 
-<script>
-
-/* Generate Falling Leaves */
-const container = document.getElementById("leafContainer");
-
-function createLeaf() {
-  const leaf = document.createElement("div");
-  leaf.classList.add("leaf");
-
-  leaf.innerHTML = "🍃";
-
-  leaf.style.left = Math.random() * 100 + "vw";
-  leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
-  leaf.style.fontSize = (18 + Math.random() * 18) + "px";
-
-  container.appendChild(leaf);
-
-  setTimeout(() => {
-    leaf.remove();
-  }, 10000);
-}
-
-setInterval(createLeaf, 200);
-
-/* Invoice Download */
-function downloadInvoice() {
-  const invoiceContent = `
-  INVOICE
-  ----------------------------
-  Product: PSORIATIC COMBO
-  Thank you for your purchase.
-  For support contact: 9363406276
-  `;
-
-  const blob = new Blob([invoiceContent], { type: "text/plain" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "invoice.txt";
-  link.click();
-}
-
-// Dynamically inject order details from sessionStorage into the invoice download link
-document.addEventListener("DOMContentLoaded", () => {
-  const invoiceLink = document.querySelector('a[href="./invoice.php"]');
-  if (invoiceLink) {
-    const lastOrderStr = sessionStorage.getItem("last_order_invoice");
-    if (lastOrderStr) {
-      try {
-        const orderData = JSON.parse(lastOrderStr);
-        const params = new URLSearchParams();
-        
-        if (orderData.name) params.set("name", orderData.name);
-        if (orderData.email) params.set("email", orderData.email);
-        if (orderData.phone) params.set("phone", orderData.phone);
-        if (orderData.address) params.set("address", orderData.address);
-        if (orderData.product) params.set("product", orderData.product);
-        if (orderData.qty) params.set("qty", orderData.qty);
-        if (orderData.price) params.set("price", orderData.price);
-        if (orderData.shipping !== undefined) params.set("shipping", orderData.shipping);
-        if (orderData.payment) params.set("payment", orderData.payment);
-        
-        invoiceLink.href = "./invoice.php?" + params.toString();
-      } catch (e) {
-        console.error("Error building invoice URL parameters:", e);
-      }
-    }
-  }
-});
-</script>
-
+  <?php require_once __DIR__ . '/includes/popup.php'; ?>
+  <?php require_once __DIR__ . '/includes/scripts.php'; ?>
 </body>
+
 </html>
