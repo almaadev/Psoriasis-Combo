@@ -146,27 +146,44 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <script>
 
-// Generate Order ID
-const orderId = "ALM" + Math.floor(100000 + Math.random() * 900000);
+// Get URL data
+const params = new URLSearchParams(window.location.search);
+
+// Try to retrieve order details from sessionStorage for perfect client-side accuracy
+let invoiceData = null;
+try {
+  const sessionData = sessionStorage.getItem('last_order_invoice');
+  if (sessionData) {
+    invoiceData = JSON.parse(sessionData);
+  }
+} catch (e) {
+  console.error("Error reading sessionStorage:", e);
+}
+
+// Generate Order ID or use real one
+const orderId = params.get("order_id") || "ALM" + Math.floor(100000 + Math.random() * 900000);
 document.getElementById("orderId").innerText = orderId;
 
 // Date
 document.getElementById("orderDate").innerText =
   new Date().toLocaleDateString();
 
-// Get URL data
-const params = new URLSearchParams(window.location.search);
+const name = (invoiceData && invoiceData.name) || params.get("name") || "Customer Name";
+const email = (invoiceData && invoiceData.email) || params.get("email") || "customer@email.com";
+const phone = (invoiceData && invoiceData.phone) || params.get("phone") || "0000000000";
+const address = (invoiceData && invoiceData.address) || params.get("address") || "Shipping Address";
 
-const name = params.get("name") || "Customer Name";
-const email = params.get("email") || "customer@email.com";
-const phone = params.get("phone") || "0000000000";
-const address = params.get("address") || "Shipping Address";
+let product = (invoiceData && invoiceData.product) || params.get("product") || "Psoriasis Care Combo";
+if (product.toUpperCase() === 'PSORIATIC COMBO' || product.toLowerCase().includes('ulcer')) {
+  product = 'Psoriasis Care Combo';
+}
 
-const product = params.get("product") || "PSORIATIC COMBO";
-const qty = parseInt(params.get("qty")) || 1;
-const price = parseInt(params.get("price")) || 2884;
-const shippingCharge = parseInt(params.get("shipping")) || 100;
-const payment = params.get("payment") || "COD";
+const qtyVal = (invoiceData && invoiceData.qty !== undefined) ? parseInt(invoiceData.qty) : (parseInt(params.get("qty")) || 1);
+const qty = (qtyVal > 10) ? 1 : qtyVal;
+
+const price = (invoiceData && invoiceData.price !== undefined) ? parseInt(invoiceData.price) : (parseInt(params.get("price")) || 2884);
+const shippingCharge = (invoiceData && invoiceData.shipping !== undefined) ? parseInt(invoiceData.shipping) : (parseInt(params.get("shipping")) || 50);
+const payment = (invoiceData && invoiceData.payment) || params.get("payment") || "COD";
 
 const subtotal = qty * price;
 const total = subtotal + shippingCharge;

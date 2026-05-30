@@ -3,7 +3,18 @@
  * Modern Secure Checkout
  * Modularized version that imports dependencies from includes/ layout.
  */
-require_once __DIR__ . '/includes/config.php';
+require_once dirname(__DIR__) . '/config.php';
+
+// Define asset paths for this module
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '');
+}
+if (!defined('ASSET_URL')) {
+    define('ASSET_URL', 'assets/');
+}
+if (!defined('IMAGE_URL')) {
+    define('IMAGE_URL', 'assets/images/');
+}
 
 // Retrieve product ID from session or default to 96
 $product_id = $_SESSION['product_id'] ?? 96;

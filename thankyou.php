@@ -3,7 +3,18 @@
  * Order Confirmation Screen
  * Refactored modular layout importing partial views from includes/.
  */
-require_once __DIR__ . '/includes/config.php';
+require_once dirname(__DIR__) . '/config.php';
+
+// Define asset paths for this module
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '');
+}
+if (!defined('ASSET_URL')) {
+    define('ASSET_URL', 'assets/');
+}
+if (!defined('IMAGE_URL')) {
+    define('IMAGE_URL', 'assets/images/');
+}
 
 $order_id = $_SESSION['order_id'] ?? null;
 
@@ -66,32 +77,44 @@ $isNewCustomer = isset($_GET['new']) && $_GET['new'] == '1';
 // Build Invoice URL parameters dynamically from fetched database data
 $invoiceParams = [];
 if (isset($customerDetails)) {
-  $fullName = trim(($customerDetails['first_name'] ?? '') . ' ' . ($customerDetails['last_name'] ?? ''));
+  $cust = isset($customerDetails[0]) ? $customerDetails[0] : $customerDetails;
+  $fullName = trim(($cust['first_name'] ?? '') . ' ' . ($cust['last_name'] ?? ''));
   if (!$fullName) {
-    $fullName = trim(($customerDetails['fname'] ?? '') . ' ' . ($customerDetails['lname'] ?? ''));
+    $fullName = trim(($cust['fname'] ?? '') . ' ' . ($cust['lname'] ?? ''));
   }
   $invoiceParams['name'] = $fullName;
-  $invoiceParams['email'] = $customerDetails['email'] ?? '';
-  $invoiceParams['phone'] = $customerDetails['mobilenumber'] ?? $customerDetails['phone'] ?? '';
+  $invoiceParams['email'] = $cust['email'] ?? '';
+  $invoiceParams['phone'] = $cust['mobilenumber'] ?? $cust['phone'] ?? '';
 }
 if (isset($addressDetails)) {
+  $addr = isset($addressDetails[0]) ? $addressDetails[0] : $addressDetails;
   $invoiceParams['address'] = trim(
-    ($addressDetails['doorno'] ?? '') . ', ' .
-    ($addressDetails['street'] ?? '') . ', ' .
-    ($addressDetails['city'] ?? '') . ', ' .
-    ($addressDetails['state'] ?? '') . ' - ' .
-    ($addressDetails['pincode'] ?? '')
+    ($addr['doorno'] ?? '') . ', ' .
+    ($addr['street'] ?? '') . ', ' .
+    ($addr['city'] ?? '') . ', ' .
+    ($addr['state'] ?? '') . ' - ' .
+    ($addr['pincode'] ?? '')
   );
 }
 if (isset($productDetails) && is_array($productDetails) && isset($productDetails[0])) {
-  $invoiceParams['product'] = $productDetails[0]['product_name'] ?? 'Psoriasis Care Combo';
-  $invoiceParams['qty'] = $productDetails[0]['quantity'] ?? 1;
+  $prodName = $productDetails[0]['product_name'] ?? 'Psoriasis Care Combo';
+  if (stripos($prodName, 'Ulcer') !== false) {
+    $prodName = 'Psoriasis Care Combo';
+  }
+  $invoiceParams['product'] = $prodName;
+
+  $sessionQty = $_SESSION['qty'] ?? 1;
+  $apiQty = $productDetails[0]['quantity'] ?? 1;
+  // If API quantity is unreasonably large (like 100), use session quantity
+  $invoiceParams['qty'] = ($apiQty > 10) ? $sessionQty : $apiQty;
+
   $invoiceParams['price'] = $productDetails[0]['amount'] ?? '';
 }
 if (isset($orderDetail)) {
   $invoiceParams['shipping'] = $orderDetail['delivery_charge'] ?? 50;
   $invoiceParams['payment'] = $orderDetail['payment_mode'] ?? 'COD';
 }
+$invoiceParams['order_id'] = $order['order_id'] ?? $order_id ?? '';
 
 $invoiceUrl = "./invoice.php?" . http_build_query($invoiceParams);
 
